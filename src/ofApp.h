@@ -37,8 +37,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	bool bShowGui = true;
 
-
-
 	const string LBL_NONE = "[none]";
 	const string LBL_CMD_MIDI_IN = "Midi In: ";
 	const string LBLCMBMIDI = "Click hier to select MidiPort";

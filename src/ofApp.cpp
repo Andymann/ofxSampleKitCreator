@@ -231,7 +231,7 @@ void ofApp::buildGui(){
     gui->setTheme(new myCustomTheme() );
     gui->setWidth( ofGetScreenWidth() );
 
-	int iTop = 70;
+	int iTop = 60;
 	int iPadding = 6;
 	//panel = new ofxDatGui(0, 100);
 	panel[0] = new myPanel(12, 0, iTop, WIDTH/4);

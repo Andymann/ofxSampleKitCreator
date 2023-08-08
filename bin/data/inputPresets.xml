@@ -1,4 +1,12 @@
-<preset name="Starrypad">
+<preset name="Starrypad, Keys '-' and '+' for PREV and NEXT">
+	<control>
+		<midiChannel>10</midiChannel>
+		<previous>52</previous>
+	</control>
+	<control>
+		<midiChannel>10</midiChannel>
+		<next>53</next>
+	</control>
 	<trigger>
 		<pad>0</pad>
 		<midiChannel>10</midiChannel>
@@ -77,12 +85,12 @@
 	<trigger>
 		<pad>15</pad>
 		<midiChannel>10</midiChannel>
-		<play>41</play>
+		<play>51</play>
 	</trigger>
 </preset>
-<preset name="Keyboard C0">
+<preset name="Keyboard lowest oct, chan 1, no black keys, c# d# for PREV and NEXT">
 </preset>
-<preset name="Keyboard C3">
+<preset name="Keyboard C3 (test)">
 </preset>
 <preset name="NI Maschine (Midi Mode)">
 </preset>
