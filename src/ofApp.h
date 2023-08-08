@@ -31,7 +31,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 		ofTrueTypeFont font;
 
 	const int WIDTH = 700;
-	const int HEIGHT = 700;
+	const int HEIGHT = 800;
 	const string TITLE="Andyland ofxSampleKitCreator";
 	const string VERSION="0.2";
 
@@ -76,7 +76,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	void setActivePreset(string pName);
 
 	ofxDatGui *gui;
-	ofxDatGuiButton* btnClear;
+	ofxDatGuiButton* btnExportToFolder;
 	ofxDatGuiDropdown* cmbMidiIn;
 	ofxDatGuiDropdown* cmbPresets;
 
@@ -97,6 +97,7 @@ class myCustomTheme : public ofxDatGuiTheme{
 public:
     myCustomTheme(){
         font.size = 12;
+		layout.upperCaseLabels = false;
         //font.file = "path/to/font.ttf";
         init();
     }
@@ -107,21 +108,34 @@ public:
     panelTheme(){
         font.size = 10;
 		layout.height *=.75;
-		color.background = hex(0xFF4081);
+		color.background = hex(0x0b2a70 /*0xFF4081*/);
+		layout.upperCaseLabels = false;
+		layout.vMargin = 2.0f;
+		//stripe.visible=false;
+		stripe.label = ofColor::fromHex(0x294c9e);
+		stripe.button = ofColor::fromHex(0xFF0000);
         init();
     }
 };
 
 class myButton : public ofxDatGuiButton{
 public:
-	myButton(string pLabel):ofxDatGuiButton(pLabel){}
+	myButton(string pLabel):ofxDatGuiButton(pLabel){
 
+	}
+	
 	void setSlot(int p){
 		iSlot=p;
+		
 	}
 
 	int getSlot(){
 		return iSlot;
+	}
+
+	// BETA
+	void setColor(int pColor){
+		mStyle.stripe.color = pColor;
 	}
 private:
 	int iSlot=-1;
@@ -152,6 +166,8 @@ class myPanel : public ofxDatGui{
 			myPanel::btnPlay->setSlot(pIndex);
 			myPanel::btnPrevious->setSlot(pIndex);
 			myPanel::btnNext->setSlot(pIndex);
+
+
 		}
 
 		void setDirectory(string pDirectory){

@@ -221,7 +221,6 @@ void ofApp::buildGui(){
     vector<string> opts = {midiIn.getInPortList()/*"option - 1", "option - 2", "option - 3", "option - 4"*/};
     cmbMidiIn = gui->addDropdown(LBLCMBMIDI, opts);
 	cmbPresets = gui->addDropdown(LBLCMBPRESET, vecPresets);
-    //btnClear = gui->addButton("Click it like Beckham");
 
 
     // once the gui has been assembled, register callbacks to listen for component specific events //
@@ -254,10 +253,12 @@ void ofApp::buildGui(){
 	panel[14] = new myPanel(3, 360, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
 	panel[15] = new myPanel(4, 540, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
 
-
 	for(int i=0; i<PADCOUNT; i++){
 		panel[i]->onButtonEvent(this, &ofApp::onButtonEvent);	
 	}
+    
+	//btnExportToFolder = gui->addButton("Export to Folder");
+	
 	
 }
 
@@ -280,7 +281,7 @@ void ofApp::showLog(){
         sTmp += logText[i] + "\n";
     }
     //font.drawString(sTmp, 10,btnClear->getY() + btnClear->getHeight() +25);
-	font.drawString(sTmp, 10,panel[12]->getPosition().y + panel[12]->getHeight()*.75 +15);
+	font.drawString(sTmp, 10,panel[12]->getPosition().y + panel[12]->getHeight()*.75 +50);
 }
 
 void ofApp::restoreSettings(){
