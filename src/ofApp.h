@@ -172,6 +172,7 @@ class myPanel : public ofxDatGui{
 
 		void setDirectory(string pDirectory){
 			sDirectory = pDirectory;
+			vFiles.clear();
 			lblFolder->setLabel( fs::path( pDirectory ).filename() );
 			for (const auto & entry : fs::directory_iterator(pDirectory)) {
 				if((endsWith(ofToLower(entry.path()), ".wav"))||(endsWith(ofToLower(entry.path()), ".mp3"))) {
