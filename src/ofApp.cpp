@@ -27,7 +27,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	if(bShowGui){
-    	//showLog();
+    	showLog();
 	}
 }
 
@@ -40,7 +40,7 @@ void ofApp::exit(){
 void ofApp::keyPressed(int key){
 	if(key==' '){
         bShowGui=!bShowGui;
-        gui->setVisible(bShowGui);
+        //gui->setVisible(bShowGui);
     }
 
 	if(key=='-'){
@@ -274,12 +274,13 @@ void ofApp::showLog(){
     string sTmp;
     //string sOscInfo="OSC Format: NoteOn/Channel/Pitch  ControlChange/Channel/Value\n\r";
     //sOscInfo += "OSC In Port:" + ofToString(incomingPortOsc) + "   OSC Out Port:" + ofToString(outGoingPortOsc) + " (see settings.xml)";
-    //font.drawString(sOscInfo, 10,btnClear->getY() + 100);
+    //font.drawString(sOscInfo, 10,panel[8]->getPosition().y + panel[8]->getHeight()*.75 + 10);
     
     for(int i=0; i<logText.size(); i++){
         sTmp += logText[i] + "\n";
     }
     //font.drawString(sTmp, 10,btnClear->getY() + btnClear->getHeight() +25);
+	font.drawString(sTmp, 10,panel[12]->getPosition().y + panel[12]->getHeight()*.75 +15);
 }
 
 void ofApp::restoreSettings(){
