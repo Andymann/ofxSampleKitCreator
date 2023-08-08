@@ -1,12 +1,12 @@
 <midiInPort>STARRYPAD</midiInPort>
-<Pad_0_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/kicks</Pad_0_Directory>
-<Pad_0_Sample>5</Pad_0_Sample>
-<Pad_1_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/bass</Pad_1_Directory>
-<Pad_1_Sample>2</Pad_1_Sample>
-<Pad_2_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/closed hats</Pad_2_Directory>
-<Pad_2_Sample>3</Pad_2_Sample>
-<Pad_3_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/open hats</Pad_3_Directory>
-<Pad_3_Sample>6</Pad_3_Sample>
+<Pad_0_Directory></Pad_0_Directory>
+<Pad_0_Sample>0</Pad_0_Sample>
+<Pad_1_Directory></Pad_1_Directory>
+<Pad_1_Sample>0</Pad_1_Sample>
+<Pad_2_Directory></Pad_2_Directory>
+<Pad_2_Sample>0</Pad_2_Sample>
+<Pad_3_Directory></Pad_3_Directory>
+<Pad_3_Sample>0</Pad_3_Sample>
 <Pad_4_Directory></Pad_4_Directory>
 <Pad_4_Sample>0</Pad_4_Sample>
 <Pad_5_Directory></Pad_5_Directory>
@@ -23,10 +23,10 @@
 <Pad_10_Sample>0</Pad_10_Sample>
 <Pad_11_Directory></Pad_11_Directory>
 <Pad_11_Sample>0</Pad_11_Sample>
-<Pad_12_Directory></Pad_12_Directory>
-<Pad_12_Sample>0</Pad_12_Sample>
-<Pad_13_Directory></Pad_13_Directory>
-<Pad_13_Sample>0</Pad_13_Sample>
+<Pad_12_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
+<Pad_12_Sample>1</Pad_12_Sample>
+<Pad_13_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
+<Pad_13_Sample>4</Pad_13_Sample>
 <Pad_14_Directory></Pad_14_Directory>
 <Pad_14_Sample>0</Pad_14_Sample>
 <Pad_15_Directory></Pad_15_Directory>

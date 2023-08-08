@@ -136,21 +136,41 @@ void ofApp::setSampleFolder(int pSlot){
 	ofFileDialogResult result = ofSystemLoadDialog("Select Sample Folder", true);
 	if(result.bSuccess) {
 		string path = result.getPath();
-		((myPanel * )panel[pSlot])->setDirectory(path);
+		for(int i=0; i<PADCOUNT; i++){
+			if( ((myPanel * )panel[i])->getSlot()==pSlot) {
+				((myPanel * )panel[i])->setDirectory(path);
+				break;
+			}
+		}
 	}
 }
 
 void ofApp::playSample(int pSlot, int pVelocity){
 	//cout << ((myPanel * )panel[pSlot])->getSelectedSample() << endl;
-	((myPanel * )panel[pSlot])->play(pVelocity); 
+	for(int i=0; i<PADCOUNT; i++){
+		if( ((myPanel * )panel[i])->getSlot()==pSlot) {
+			((myPanel * )panel[i])->play(pVelocity);
+			break;
+		}
+	}
 }
 
 void ofApp::selectPreviousSample(int pSlot){
-	((myPanel * )panel[pSlot])->selectPreviousSample();
+	for(int i=0; i<PADCOUNT; i++){
+		if( ((myPanel * )panel[i])->getSlot()==pSlot ){
+			((myPanel * )panel[i])->selectPreviousSample();
+			break;
+		}
+	}
 }
 
 void ofApp::selectNextSample(int pSlot){
-	((myPanel * )panel[pSlot])->selectNextSample();
+	for(int i=0; i<PADCOUNT; i++){
+		if( ((myPanel * )panel[i])->getSlot()==pSlot) {
+			((myPanel * )panel[i])->selectNextSample();
+			break;
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -233,25 +253,28 @@ void ofApp::buildGui(){
 	int iTop = 60;
 	int iPadding = 6;
 	//panel = new ofxDatGui(0, 100);
-	panel[0] = new myPanel(0, 0, iTop, WIDTH/4);
-	panel[1] = new myPanel(1, 180, iTop, WIDTH/4 );
-	panel[2] = new myPanel(2, 360, iTop, WIDTH/4 );
-	panel[3] = new myPanel(3, 540, iTop, WIDTH/4 );
 
-	panel[4] = new myPanel(4, 0, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[5] = new myPanel(5, 180, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[6] = new myPanel(6, 360, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[7] = new myPanel(7, 540, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
 
-	panel[8] = new myPanel(8, 0, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[9] = new myPanel(9, 180, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[10] = new myPanel(10, 360, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[11] = new myPanel(11, 540, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
 
-	panel[12] = new myPanel(12, 0, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[13] = new myPanel(13, 180, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[14] = new myPanel(14, 360, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[15] = new myPanel(15, 540, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[0] = new myPanel(12, 0, iTop, WIDTH/4);
+	panel[1] = new myPanel(13, 180, iTop, WIDTH/4 );
+	panel[2] = new myPanel(14, 360, iTop, WIDTH/4 );
+	panel[3] = new myPanel(15, 540, iTop, WIDTH/4 );
+
+	panel[4] = new myPanel(8, 0, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4);
+	panel[5] = new myPanel(9, 180, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[6] = new myPanel(10, 360, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[7] = new myPanel(11, 540, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
+
+	panel[8] = new myPanel(4, 0, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4);
+	panel[9] = new myPanel(5, 180, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[10] = new myPanel(6, 360, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[11] = new myPanel(7, 540, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
+
+	panel[12] = new myPanel(0, 0, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4);
+	panel[13] = new myPanel(1, 180, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[14] = new myPanel(2, 360, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[15] = new myPanel(3, 540, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
 
 	for(int i=0; i<PADCOUNT; i++){
 		panel[i]->onButtonEvent(this, &ofApp::onButtonEvent);	

@@ -151,7 +151,7 @@ class myPanel : public ofxDatGui{
 		inline static const string LBLNEXT = "Next";
 		
 		myPanel(int pIndex, int pX, int pY, int pWidth):ofxDatGui(pX, pY){
-
+			iSlot = pIndex;
 			setTheme(new panelTheme());
 			setWidth(pWidth);
 			addHeader("Slot " + ofToString((pIndex)));
@@ -250,6 +250,10 @@ class myPanel : public ofxDatGui{
 			}
 		}
 
+		int getSlot(){
+			return iSlot;
+		}
+
 
 	private:
 		myButton* lblFolder;
@@ -262,6 +266,7 @@ class myPanel : public ofxDatGui{
 		string sDirectory;
 		vector<string> vFiles;
 		int iSelectedFile = -1;
+		int iSlot;
 
 		bool endsWith(std::string const &str, std::string const &suffix) {
 			if (str.length() < suffix.length()) {
