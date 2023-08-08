@@ -1,13 +1,12 @@
-<midiInPort>IAC-Treiber Bus 1</midiInPort>
-<Pad_0_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/kicks</Pad_0_Directory>
-<Pad_1_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/snares</Pad_1_Directory>
-<Pad_2_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/closed hats</Pad_2_Directory>
-<Pad_3_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/open hats</Pad_3_Directory>
-<Pad_0_Sample>12</Pad_0_Sample>
-<Pad_1_Sample>9</Pad_1_Sample>
-<Pad_2_Sample>7</Pad_2_Sample>
-<Pad_3_Sample>8</Pad_3_Sample>
-<controlpreset>Starrypad</controlpreset>
+<midiInPort>virtual1</midiInPort>
+<Pad_0_Directory></Pad_0_Directory>
+<Pad_0_Sample>0</Pad_0_Sample>
+<Pad_1_Directory></Pad_1_Directory>
+<Pad_1_Sample>0</Pad_1_Sample>
+<Pad_2_Directory></Pad_2_Directory>
+<Pad_2_Sample>0</Pad_2_Sample>
+<Pad_3_Directory></Pad_3_Directory>
+<Pad_3_Sample>0</Pad_3_Sample>
 <Pad_4_Directory></Pad_4_Directory>
 <Pad_4_Sample>0</Pad_4_Sample>
 <Pad_5_Directory></Pad_5_Directory>
@@ -32,3 +31,4 @@
 <Pad_14_Sample>0</Pad_14_Sample>
 <Pad_15_Directory></Pad_15_Directory>
 <Pad_15_Sample>0</Pad_15_Sample>
+<controlpreset></controlpreset>

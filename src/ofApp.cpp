@@ -310,16 +310,20 @@ void ofApp::restoreSettings(){
 
 	for(int i=0; i<PADCOUNT; i++){
 		string tmp=xmlSettings.getValue("Pad_" + ofToString(i) + "_Directory", "");
-		if(tmp.length()>0){
-			((myPanel * )panel[i])->setDirectory(tmp);
+		if(ofDirectory::doesDirectoryExist(tmp)){
+			if(tmp.length()>0){
+				((myPanel * )panel[i])->setDirectory(tmp);
+			}
 		}
 	}
 
-	
 	for(int i=0; i<PADCOUNT; i++){
-		string tmp=xmlSettings.getValue("Pad_" + ofToString(i) + "_Sample", "");
-		if(ofToInt(tmp)!=0){
-			((myPanel * )panel[i])->setSelectedSampleIndex((ofToInt(tmp))-1);
+		string dir=xmlSettings.getValue("Pad_" + ofToString(i) + "_Directory", "");
+		if(ofDirectory::doesDirectoryExist(dir)){
+			string tmp=xmlSettings.getValue("Pad_" + ofToString(i) + "_Sample", "");
+			if(ofToInt(tmp)!=0){
+				((myPanel * )panel[i])->setSelectedSampleIndex((ofToInt(tmp))-1);
+			}
 		}
 	}
 
