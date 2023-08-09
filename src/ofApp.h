@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="Andyland ofxSampleKitCreator";
-	const string VERSION="0.6";
+	const string VERSION="0.7";
 
 	bool bShowGui = true;
 
@@ -42,6 +42,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBLCMBMIDI = "Click hier to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
 	const string LBL_EXPORTTOFOLDER = "Export to Folder";
+	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
 
 	// For them Pads
 	const int PAD_CONTROL_NONE = -1;
@@ -82,6 +83,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	void loadPresets();
 	void setActivePreset(string pName);
 	void exportToFolder();
+	void exportAsSingleWav();
 
 	ofxDatGui *gui;
 	ofxDatGuiDropdown* cmbMidiIn;
@@ -91,6 +93,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	ofxDatGui *bottomGui;
 	ofxDatGuiButton* btnExportToFolder;
+	ofxDatGuiButton* btnExportAsSingleWav;
 	struct padData{
 		int iPad;
 		int iChannel;

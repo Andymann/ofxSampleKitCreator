@@ -131,6 +131,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 		selectNextSample( slot);
 	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
 		exportToFolder();
+	}else if( e.target->getLabel().compare(LBL_EXPORTASSINGLEWAV)==0){
+		exportAsSingleWav();
 	}
 }
 
@@ -295,6 +297,7 @@ void ofApp::buildGui(){
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
 	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
+//	btnExportAsSingleWav = bottomGui->addButton(LBL_EXPORTASSINGLEWAV);
 	bottomGui->addBreak()->setHeight(10.0f);
     bottomGui->onButtonEvent(this, &ofApp::onButtonEvent);
     bottomGui->setTheme(new myCustomTheme() );
@@ -466,5 +469,8 @@ void ofApp::exportToFolder(){
 			}
 		}
 	}
+}
+
+void ofApp::exportAsSingleWav(){
 
 }
