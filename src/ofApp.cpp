@@ -454,7 +454,8 @@ void ofApp::setActivePreset(string pName){
 }
 
 void ofApp::exportToFolder(){
-	ofFileDialogResult result = ofSystemLoadDialog("Select Export Folder", true);
+	//ofFileDialogResult result = ofSystemLoadDialog("Select Export Folder", true);
+	ofFileDialogResult result = ofSystemSaveDialog("Select Export Folder", "Save");
 	if(result.bSuccess) {
 		string path = result.getPath();
 		for(int i=0; i<PADCOUNT; i++){
