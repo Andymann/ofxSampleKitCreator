@@ -457,12 +457,12 @@ void ofApp::exportToFolder(){
 	ofFileDialogResult result = ofSystemLoadDialog("Select Export Folder", true);
 	if(result.bSuccess) {
 		string path = result.getPath();
-		vector<string> tmpFiles = ((myPanel * )panel[0])->getFileVector();
-		if(tmpFiles.size()>0){
-			for(int i=0; i<tmpFiles.size(); i++){
-				cout << tmpFiles[i] << endl;
-				string tmpFilename = fs::path( tmpFiles[i] ).filename();
-				ofFile::copyFromTo(tmpFiles[i],path + std::filesystem::path::preferred_separator + tmpFilename , false);
+		for(int i=0; i<PADCOUNT; i++){
+			string tmpFiles = ((myPanel * )panel[i])->getSelectedSample();
+			if(tmpFiles.size()>0){
+				cout << tmpFiles << endl;
+				string tmpFilename = fs::path( tmpFiles ).filename();
+				ofFile::copyFromTo(tmpFiles,path + std::filesystem::path::preferred_separator + tmpFilename , false);
 			}
 		}
 	}

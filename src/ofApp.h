@@ -251,7 +251,12 @@ class myPanel : public ofxDatGui{
 		}
 
 		string getSelectedSample(){
-			return vFiles[iSelectedFile];
+			if(iSelectedFile!=-1){
+				return vFiles[iSelectedFile];
+			}else{
+				return "";
+			}
+			
 		}
 
 		int getSelectedSampleIndex(){
