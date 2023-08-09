@@ -39,8 +39,9 @@ void ofApp::exit(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	if(key==' '){
-        bShowGui=!bShowGui;
+        //bShowGui=!bShowGui;
         //gui->setVisible(bShowGui);
+		stopAllSamples();
     }
 
 	if(key=='-'){
@@ -154,6 +155,12 @@ void ofApp::playSample(int pSlot, int pVelocity){
 			((myPanel * )panel[i])->play(pVelocity);
 			break;
 		}
+	}
+}
+
+void ofApp::stopAllSamples(){
+	for(int i=0; i<PADCOUNT; i++){
+		((myPanel * )panel[i])->stop();
 	}
 }
 
@@ -436,7 +443,6 @@ void ofApp::setActivePreset(string pName){
 	}
 	
 	xmlPresets.pushTag("control_next");
-	
 	{	
 		padData tmp;
 		tmp.iChannel = xmlPresets.getValue("midiChannel", 0);

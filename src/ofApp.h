@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="Andyland ofxSampleKitCreator";
-	const string VERSION="0.5";
+	const string VERSION="0.6";
 
 	bool bShowGui = true;
 
@@ -71,6 +71,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	void setSampleFolder(int pSlot);
 	void playSample(int pSlot, int pVelocity);
+	void stopAllSamples();
 	void selectPreviousSample(int pSlot);
 	void selectNextSample(int pSlot);
 	
@@ -243,6 +244,10 @@ class myPanel : public ofxDatGui{
 		void play(int pVelocity){
 			mySample.setVolume(pVelocity/127.0);
 			mySample.play();
+		}
+
+		void stop(){
+			mySample.stop();
 		}
 
 		string getSelectedSample(){
