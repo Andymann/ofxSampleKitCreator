@@ -1,10 +1,10 @@
 <preset name="Starrypad, Keys '-' and '+' for PREV and NEXT">
 	<control_previous>
-		<midiChannel>10</midiChannel>
+		<midiChannel>11</midiChannel>
 		<note>47</note>
 	</control_previous>
 	<control_next>
-		<midiChannel>10</midiChannel>
+		<midiChannel>11</midiChannel>
 		<note>48</note>
 	</control_next>
 	<trigger>
@@ -63,8 +63,8 @@
 		<note>46</note>
 	</trigger>
 	<trigger>
-		<pad>11</pad>
-		<midiChannel>11</midiChannel>
+		<pad>10</pad>
+		<midiChannel>10</midiChannel>
 		<note>47</note>
 	</trigger>
 	<trigger>
