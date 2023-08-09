@@ -32,14 +32,15 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
-	const string TITLE="Andyland ofxSampleKitCreator";
+	const string TITLE="ofxSampleKitCreator";
 	const string VERSION="0.7";
+	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
 
 	const string LBL_NONE = "[none]";
 	const string LBL_CMD_MIDI_IN = "Midi In: ";
-	const string LBLCMBMIDI = "Click hier to select MidiPort";
+	const string LBLCMBMIDI = "Click here to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
 	const string LBL_EXPORTTOFOLDER = "Export to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
