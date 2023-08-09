@@ -128,6 +128,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 		selectPreviousSample( slot );
 	}else if( e.target->getLabel().compare(myPanel::LBLNEXT)==0){
 		selectNextSample( slot);
+	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
+		exportToFolder();
 	}
 }
 
@@ -246,15 +248,13 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 
 void ofApp::buildGui(){
     font.load(OF_TTF_MONO, 11);
-    
+
     gui = new ofxDatGui( ofxDatGuiAnchor::TOP_LEFT );
     vector<string> opts = {midiIn.getInPortList()/*"option - 1", "option - 2", "option - 3", "option - 4"*/};
     cmbMidiIn = gui->addDropdown(LBLCMBMIDI, opts);
 	cmbPresets = gui->addDropdown(LBLCMBPRESET, vecPresets);
 
-
     // once the gui has been assembled, register callbacks to listen for component specific events //
-    //gui->onSliderEvent(this, &ofApp::onSliderEvent);
     gui->onDropdownEvent(this, &ofApp::onDropdownEvent);
 
     gui->setTheme(new myCustomTheme() );
@@ -262,10 +262,6 @@ void ofApp::buildGui(){
 
 	int iTop = 60;
 	int iPadding = 6;
-	//panel = new ofxDatGui(0, 100);
-
-
-
 	panel[0] = new myPanel(12, 0, iTop, WIDTH/4);
 	panel[1] = new myPanel(13, 180, iTop, WIDTH/4 );
 	panel[2] = new myPanel(14, 360, iTop, WIDTH/4 );
@@ -289,10 +285,13 @@ void ofApp::buildGui(){
 	for(int i=0; i<PADCOUNT; i++){
 		panel[i]->onButtonEvent(this, &ofApp::onButtonEvent);	
 	}
-    
-	//btnExportToFolder = gui->addButton("Export to Folder");
-	
-	
+
+	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
+	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
+	bottomGui->addBreak()->setHeight(10.0f);
+    bottomGui->onButtonEvent(this, &ofApp::onButtonEvent);
+    bottomGui->setTheme(new myCustomTheme() );
+    bottomGui->setWidth( ofGetScreenWidth() );
 }
 
 //--------------------------------------------------------------
@@ -413,49 +412,6 @@ void ofApp::setActivePreset(string pName){
 		}
 	}
 
-	//xmlPresets.pushTag("preset",iWhich);
-	//xmlPresets.pushTag("trigger", 12);
-	//cout << "Pad:" << ofToString(xmlPresets.getValue("pad", 0)) << endl;
-	//cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
-	//cout << "Note:" << ofToString(xmlPresets.getValue("play", 0)) << endl;
-	//xmlPresets.popTag();
-	//xmlPresets.popTag();
-
-	
-/*
-	xmlPresets.pushTag("control", 0);
-	cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
-	cout << "Channel:" << ofToString(xmlPresets.getValue("previous", 0)) << endl;
-	cout << "Channel:" << ofToString(xmlPresets.getValue("next", 0)) << endl;
-	
-	
-	for(int i=0; i<2; i++){
-		if(xmlPresets.getValue("previous", i)>=0){
-			padData tmp;
-			tmp.iChannel = xmlPresets.getValue("midiChannel", 0);
-			tmp.iPad = xmlPresets.getValue("previous"), 0;
-			tmp.iControl = padData.CONTROL_PREV;
-			vecPadmapping.push_back(tmp);
-			//break;
-		}
-		if(xmlPresets.getValue("next", i)>=0){
-			padData tmp;
-			tmp.iChannel = xmlPresets.getValue("midiChannel", 0);
-			tmp.iPad = xmlPresets.getValue("next"), 0;
-			tmp.iControl = padData.CONTROL_NEXT;
-			vecPadmapping.push_back(tmp);
-			//break;
-		}
-	}
-	xmlPresets.popTag();
-
-	xmlPresets.pushTag("control", 1);
-	cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
-	cout << "Channel:" << ofToString(xmlPresets.getValue("previous", 0)) << endl;
-	cout << "Channel:" << ofToString(xmlPresets.getValue("next", 0)) << endl;
-	xmlPresets.popTag();
-*/
-
 	xmlPresets.pushTag("preset",iWhich);
 	for(int i=0; i<PADCOUNT; i++){
 		xmlPresets.pushTag("trigger", i);
@@ -489,4 +445,20 @@ void ofApp::setActivePreset(string pName){
 		vecPadmapping.push_back(tmp);
 		xmlPresets.popTag();
 	}
+}
+
+void ofApp::exportToFolder(){
+	ofFileDialogResult result = ofSystemLoadDialog("Select Export Folder", true);
+	if(result.bSuccess) {
+		string path = result.getPath();
+		vector<string> tmpFiles = ((myPanel * )panel[0])->getFileVector();
+		if(tmpFiles.size()>0){
+			for(int i=0; i<tmpFiles.size(); i++){
+				cout << tmpFiles[i] << endl;
+				string tmpFilename = fs::path( tmpFiles[i] ).filename();
+				ofFile::copyFromTo(tmpFiles[i],path + std::filesystem::path::preferred_separator + tmpFilename , false);
+			}
+		}
+	}
+
 }

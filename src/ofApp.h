@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 700;
 	const int HEIGHT = 800;
 	const string TITLE="Andyland ofxSampleKitCreator";
-	const string VERSION="0.3";
+	const string VERSION="0.4";
 
 	bool bShowGui = true;
 
@@ -41,6 +41,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBL_CMD_MIDI_IN = "Midi In: ";
 	const string LBLCMBMIDI = "Click hier to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
+	const string LBL_EXPORTTOFOLDER = "Export to Folder";
 
 	// For them Pads
 	const int PAD_CONTROL_NONE = -1;
@@ -79,14 +80,16 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	void loadPresets();
 	void setActivePreset(string pName);
+	void exportToFolder();
 
 	ofxDatGui *gui;
-	ofxDatGuiButton* btnExportToFolder;
 	ofxDatGuiDropdown* cmbMidiIn;
 	ofxDatGuiDropdown* cmbPresets;
 
 	ofxDatGui* panel[16];
 
+	ofxDatGui *bottomGui;
+	ofxDatGuiButton* btnExportToFolder;
 	struct padData{
 		int iPad;
 		int iChannel;
@@ -205,6 +208,10 @@ class myPanel : public ofxDatGui{
 			for(int i=0; i<vFiles.size(); i++){
 				cout << vFiles[i] << endl;
 			}
+		}
+
+		vector<string> getFileVector(){
+			return vFiles;
 		}
 
 		void selectNextSample(){
