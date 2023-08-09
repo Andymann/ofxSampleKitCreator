@@ -225,9 +225,17 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 	// everything is stored in vecPadmapping,
 	for(int i=0; i<vecPadmapping.size(); i++){
 		if((message.channel == vecPadmapping[i].iChannel) &&
-		(message.pitch == vecPadmapping[i].iPlay)){
+		(message.pitch == vecPadmapping[i].iPlay) && (vecPadmapping[i].iAction == PAD_PLAYSAMPLE)){
 			playSample(vecPadmapping[i].iPad, message.velocity);
 			iActivePad = i;
+			break;
+		}else if((message.channel == vecPadmapping[i].iChannel) &&
+		(vecPadmapping[i].iAction == PAD_CONTROL_PREV)){
+			selectPreviousSample(iActivePad);
+			break;
+		}else if((message.channel == vecPadmapping[i].iChannel) &&
+		(vecPadmapping[i].iAction == PAD_CONTROL_NEXT)){
+			selectNextSample(iActivePad);
 			break;
 		}
 
@@ -412,16 +420,47 @@ void ofApp::setActivePreset(string pName){
 	//xmlPresets.popTag();
 
 	xmlPresets.pushTag("preset",iWhich);
+/*
+	xmlPresets.pushTag("control", 0);
+	cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
+	cout << "Channel:" << ofToString(xmlPresets.getValue("previous", 0)) << endl;
+	cout << "Channel:" << ofToString(xmlPresets.getValue("next", 0)) << endl;
+	
+	
+	for(int i=0; i<2; i++){
+		if(xmlPresets.getValue("previous", i)>=0){
+			padData tmp;
+			tmp.iChannel = xmlPresets.getValue("midiChannel", 0);
+			tmp.iPad = xmlPresets.getValue("previous"), 0;
+			tmp.iControl = padData.CONTROL_PREV;
+			vecPadmapping.push_back(tmp);
+			//break;
+		}
+		if(xmlPresets.getValue("next", i)>=0){
+			padData tmp;
+			tmp.iChannel = xmlPresets.getValue("midiChannel", 0);
+			tmp.iPad = xmlPresets.getValue("next"), 0;
+			tmp.iControl = padData.CONTROL_NEXT;
+			vecPadmapping.push_back(tmp);
+			//break;
+		}
+	}
+	xmlPresets.popTag();
+
+	xmlPresets.pushTag("control", 1);
+	cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
+	cout << "Channel:" << ofToString(xmlPresets.getValue("previous", 0)) << endl;
+	cout << "Channel:" << ofToString(xmlPresets.getValue("next", 0)) << endl;
+	xmlPresets.popTag();
+*/
 	for(int i=0; i<PADCOUNT; i++){
 		xmlPresets.pushTag("trigger", i);
-		//cout << "Pad:" << ofToString(xmlPresets.getValue("pad", 0)) << endl;
-		//cout << "Channel:" << ofToString(xmlPresets.getValue("midiChannel", 0)) << endl;
-		//cout << "Note(play):" << ofToString(xmlPresets.getValue("play", 0)) << endl;
-
+		
 		padData tmp;
 		tmp.iPad = xmlPresets.getValue("pad", 0);
 		tmp.iChannel = xmlPresets.getValue("midiChannel", 0);
-		tmp.iPlay = xmlPresets.getValue("play", 0);
+		tmp.iPlay = xmlPresets.getValue("note", 0);
+		tmp.iAction = PAD_PLAYSAMPLE;
 		vecPadmapping.push_back(tmp);
 		xmlPresets.popTag();
 	}

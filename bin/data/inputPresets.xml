@@ -1,91 +1,91 @@
 <preset name="Starrypad, Keys '-' and '+' for PREV and NEXT">
-	<control>
+	<control_previous>
 		<midiChannel>10</midiChannel>
-		<previous>52</previous>
-	</control>
-	<control>
+		<note>47</note>
+	</control_previous>
+	<control_next>
 		<midiChannel>10</midiChannel>
-		<next>53</next>
-	</control>
+		<note>48</note>
+	</control_next>
 	<trigger>
 		<pad>0</pad>
 		<midiChannel>10</midiChannel>
-		<play>36</play>
+		<note>36</note>
 	</trigger>
 	<trigger>
 		<pad>1</pad>
 		<midiChannel>10</midiChannel>
-		<play>37</play>
+		<note>37</note>
 	</trigger>
 	<trigger>
 		<pad>2</pad>
 		<midiChannel>10</midiChannel>
-		<play>38</play>
+		<note>38</note>
 	</trigger>
 	<trigger>
 		<pad>3</pad>
 		<midiChannel>10</midiChannel>
-		<play>39</play>
+		<note>39</note>
 	</trigger>
 	<trigger>
 		<pad>4</pad>
 		<midiChannel>10</midiChannel>
-		<play>40</play>
+		<note>40</note>
 	</trigger>
 	<trigger>
 		<pad>5</pad>
 		<midiChannel>10</midiChannel>
-		<play>41</play>
+		<note>41</note>
 	</trigger>
 	<trigger>
 		<pad>6</pad>
 		<midiChannel>10</midiChannel>
-		<play>42</play>
+		<note>42</note>
 	</trigger>
 	<trigger>
 		<pad>7</pad>
 		<midiChannel>10</midiChannel>
-		<play>43</play>
+		<note>43</note>
 	</trigger>
 	<trigger>
 		<pad>8</pad>
 		<midiChannel>10</midiChannel>
-		<play>44</play>
+		<note>44</note>
 	</trigger>
 	<trigger>
 		<pad>9</pad>
 		<midiChannel>10</midiChannel>
-		<play>45</play>
+		<note>45</note>
 	</trigger>
 	<trigger>
 		<pad>10</pad>
 		<midiChannel>10</midiChannel>
-		<play>46</play>
+		<note>46</note>
 	</trigger>
 	<trigger>
 		<pad>11</pad>
-		<midiChannel>10</midiChannel>
-		<play>47</play>
+		<midiChannel>11</midiChannel>
+		<note>47</note>
 	</trigger>
 	<trigger>
 		<pad>12</pad>
-		<midiChannel>10</midiChannel>
-		<play>48</play>
+		<midiChannel>11</midiChannel>
+		<note>48</note>
 	</trigger>
 	<trigger>
 		<pad>13</pad>
 		<midiChannel>10</midiChannel>
-		<play>49</play>
+		<note>49</note>
 	</trigger>
 	<trigger>
 		<pad>14</pad>
 		<midiChannel>10</midiChannel>
-		<play>50</play>
+		<note>50</note>
 	</trigger>
 	<trigger>
 		<pad>15</pad>
 		<midiChannel>10</midiChannel>
-		<play>51</play>
+		<note>51</note>
 	</trigger>
 </preset>
 <preset name="Keyboard lowest oct, chan 1, no black keys, c# d# for PREV and NEXT">

@@ -42,6 +42,11 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBLCMBMIDI = "Click hier to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
 
+	// For them Pads
+	const int PAD_CONTROL_NONE = -1;
+	const int PAD_CONTROL_PREV = 1;
+	const int PAD_CONTROL_NEXT = 2;
+	const int PAD_PLAYSAMPLE = 4;
 
 	vector<string>logText;
 	void addLog(string p);
@@ -86,8 +91,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 		int iPad;
 		int iChannel;
 		int iPlay;
-		//int iPrevious;
-		//int iNext;
+		int iAction = -1;
 	};
 	
 	vector<padData> vecPadmapping;
