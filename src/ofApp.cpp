@@ -247,7 +247,7 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 }
 
 void ofApp::buildGui(){
-    font.load(OF_TTF_MONO, 11);
+    font.load(OF_TTF_MONO, 16);
 
     gui = new ofxDatGui( ofxDatGuiAnchor::TOP_LEFT );
     vector<string> opts = {midiIn.getInPortList()/*"option - 1", "option - 2", "option - 3", "option - 4"*/};
@@ -260,27 +260,27 @@ void ofApp::buildGui(){
     gui->setTheme(new myCustomTheme() );
     gui->setWidth( ofGetScreenWidth() );
 
-	int iTop = 60;
-	int iPadding = 6;
-	panel[0] = new myPanel(12, 0, iTop, WIDTH/4);
-	panel[1] = new myPanel(13, 180, iTop, WIDTH/4 );
-	panel[2] = new myPanel(14, 360, iTop, WIDTH/4 );
-	panel[3] = new myPanel(15, 540, iTop, WIDTH/4 );
+	int iTop = 120;
+	int iPadding = 15;
+	panel[0] = new myPanel(12, 12, iTop, WIDTH/4 -12);
+	panel[1] = new myPanel(13, 12+WIDTH/4, iTop, WIDTH/4 -12);
+	panel[2] = new myPanel(14, 12+2*WIDTH/4, iTop, WIDTH/4 -12);
+	panel[3] = new myPanel(15, 12+3*WIDTH/4, iTop, WIDTH/4 -24);
 
-	panel[4] = new myPanel(8, 0, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[5] = new myPanel(9, 180, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[6] = new myPanel(10, 360, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[7] = new myPanel(11, 540, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[4] = new myPanel(8, 12, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
+	panel[5] = new myPanel(9, 12+WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
+	panel[6] = new myPanel(10, 12+2*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
+	panel[7] = new myPanel(11, 12+3*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -24);
 
-	panel[8] = new myPanel(4, 0, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[9] = new myPanel(5, 180, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[10] = new myPanel(6, 360, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[11] = new myPanel(7, 540, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[8] = new myPanel(4, 12, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4-12);
+	panel[9] = new myPanel(5, 12+WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -12);
+	panel[10] = new myPanel(6, 12+2*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -12);
+	panel[11] = new myPanel(7, 12+3*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -24);
 
-	panel[12] = new myPanel(0, 0, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4);
-	panel[13] = new myPanel(1, 180, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[14] = new myPanel(2, 360, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
-	panel[15] = new myPanel(3, 540, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4 );
+	panel[12] = new myPanel(0, 12, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12);
+	panel[13] = new myPanel(1, 12+WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12 );
+	panel[14] = new myPanel(2, 12+2*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12 );
+	panel[15] = new myPanel(3, 12+3*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-24);
 
 	for(int i=0; i<PADCOUNT; i++){
 		panel[i]->onButtonEvent(this, &ofApp::onButtonEvent);	
@@ -313,7 +313,7 @@ void ofApp::showLog(){
         sTmp += logText[i] + "\n";
     }
     //font.drawString(sTmp, 10,btnClear->getY() + btnClear->getHeight() +25);
-	font.drawString(sTmp, 10,panel[12]->getPosition().y + panel[12]->getHeight()*.75 +50);
+	font.drawString(sTmp, 10,panel[12]->getPosition().y + panel[12]->getHeight()*.75 +100);
 }
 
 void ofApp::restoreSettings(){

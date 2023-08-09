@@ -30,8 +30,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 		ofTrueTypeFont font;
 
-	const int WIDTH = 700;
-	const int HEIGHT = 800;
+	const int WIDTH = 1400;
+	const int HEIGHT = 1600;
 	const string TITLE="Andyland ofxSampleKitCreator";
 	const string VERSION="0.4";
 
