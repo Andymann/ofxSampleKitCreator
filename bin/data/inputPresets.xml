@@ -90,12 +90,12 @@
 </preset>
 <preset name="Launchkey Mini MK3">
 	<control_previous>
-		<midiChannel>11</midiChannel>
-		<note>47</note>
+		<midiChannel>10</midiChannel>
+		<note>36</note>
 	</control_previous>
 	<control_next>
-		<midiChannel>11</midiChannel>
-		<note>48</note>
+		<midiChannel>10</midiChannel>
+		<note>40</note>
 	</control_next>
 	<trigger>
 		<pad>0</pad>
