@@ -18,6 +18,8 @@
 		"stack": "cpp",
 		"string_view": "cpp",
 		"unordered_map": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"__locale": "cpp",
+		"__string": "cpp"
 	}
 }

@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.7";
+	const string VERSION="0.8";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -42,14 +42,20 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBL_CMD_MIDI_IN = "Midi In: ";
 	const string LBLCMBMIDI = "Click here to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
+	const string LBLCMBVELOCITY = "Select how to treat incomfing midi";
 	const string LBL_EXPORTTOFOLDER = "Export to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
+	const string LBL_VELOCITYFIXED = "Play samples with fixed velocity";
+	const string LBL_VELOCITYVARI = "Play samples with Controller's velocity";
 
 	// For them Pads
 	const int PAD_CONTROL_NONE = -1;
 	const int PAD_CONTROL_PREV = 1;
 	const int PAD_CONTROL_NEXT = 2;
 	const int PAD_PLAYSAMPLE = 4;
+
+	vector<string> vVelo = {LBL_VELOCITYVARI, LBL_VELOCITYFIXED};
+	bool bIncomingVelocityFixed=false;
 
 	vector<string>logText;
 	void addLog(string p);
@@ -89,6 +95,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	ofxDatGui *gui;
 	ofxDatGuiDropdown* cmbMidiIn;
 	ofxDatGuiDropdown* cmbPresets;
+	ofxDatGuiDropdown* cmbVelocity;
+
 
 	ofxDatGui* panel[16];
 

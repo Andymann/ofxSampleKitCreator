@@ -109,11 +109,19 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
-    cout << "onDropdownEvent: "<< e.target->getName() << " " << e.target->getLabel() << " Selected" << endl;
+    cout << "onDropdownEvent: "<< e.target->getName() << "---" << e.target->getLabel() << " Selected" << endl;
 	if(e.target->getName().compare(LBLCMBMIDI)==0){
 		setMidiPort( e.target->getLabel() );
 	}else if(e.target->getName().compare(LBLCMBPRESET)==0){
 		setActivePreset( e.target->getLabel() );
+	}else if(e.target->getName().compare(LBLCMBVELOCITY)==0){
+		if( e.target->getLabel().compare(LBL_VELOCITYVARI)==0 ){
+			bIncomingVelocityFixed = false;
+			//cout << "bVelo " << ofToString(bIncomingVelocityFixed) << endl;
+		}else if(e.target->getLabel().compare(LBL_VELOCITYFIXED)==0) {
+			bIncomingVelocityFixed = true;
+			//cout << "bVelo " << ofToString(bIncomingVelocityFixed) << endl;
+		}
 	}
     
 }
@@ -202,7 +210,7 @@ void ofApp::setMidiPort(string pPortName){
 //--------------------------------------------------------------
 void ofApp::newMidiMessage(ofxMidiMessage& message) {
    //addLog("Midi INcoming:" + message.getStatusString(message.status));
-   cout << "Midi in: " << message.getStatusString(message.status) << " " << ofToString(message.pitch) << " " << ofToString(message.channel) << endl;
+   //cout << "Midi in: " << message.getStatusString(message.status) << " " << ofToString(message.pitch) << " " << ofToString(message.channel) << endl;
     switch(message.status) {
         case MIDI_TIME_CLOCK:
             break;
@@ -237,6 +245,9 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 	for(int i=0; i<vecPadmapping.size(); i++){
 		if((message.channel == vecPadmapping[i].iChannel) &&
 		(message.pitch == vecPadmapping[i].iPlay) && (vecPadmapping[i].iAction == PAD_PLAYSAMPLE)){
+			if((bIncomingVelocityFixed==true) && (message.velocity>0)){
+				message.velocity = 0x7f;
+			}
 			playSample(vecPadmapping[i].iPad, message.velocity);
 			iActivePad = i;
 			break;
@@ -262,6 +273,7 @@ void ofApp::buildGui(){
     vector<string> opts = {midiIn.getInPortList()/*"option - 1", "option - 2", "option - 3", "option - 4"*/};
     cmbMidiIn = gui->addDropdown(LBLCMBMIDI, opts);
 	cmbPresets = gui->addDropdown(LBLCMBPRESET, vecPresets);
+	cmbVelocity = gui->addDropdown(LBLCMBVELOCITY, vVelo);
 
     // once the gui has been assembled, register callbacks to listen for component specific events //
     gui->onDropdownEvent(this, &ofApp::onDropdownEvent);
@@ -376,6 +388,12 @@ void ofApp::restoreSettings(){
     }else{
 		addLog("Could not load Control-Preset");
 	}
+
+	int iTmp = xmlSettings.getValue("velocityhandling", 0);
+	cmbVelocity->setLabel(vVelo[iTmp]);
+	if(vVelo[iTmp].compare(LBL_VELOCITYFIXED)==0){
+		bIncomingVelocityFixed = true;
+	}
 }
 
 void ofApp::saveSettings(){
@@ -386,6 +404,20 @@ void ofApp::saveSettings(){
 		xmlSettings.setValue("Pad_" + ofToString(i) + "_Directory",((myPanel * )panel[i])->getDirectory());
 		xmlSettings.setValue("Pad_" + ofToString(i) + "_Sample",((myPanel * )panel[i])->getSelectedSampleIndex()+1); //+1 wegen returncode von ofToString beim restore()
 	}
+
+	//string tmp = cmbVelocity->getLabel();
+	//cout << "SaveSettings uku:" << tmp << endl;
+	for(int i=0; i<vVelo.size(); i++){
+		if(vVelo[i].compare(cmbVelocity->getLabel())==0){
+			//cout << "SaveSettings(): " << cmbVelocity->getLabel() << endl;
+			xmlSettings.setValue("velocityhandling", i);
+			break;
+		}
+	}
+
+
+
+
 	xmlSettings.setValue("controlpreset", sActivePreset);
     xmlSettings.save();
 }
