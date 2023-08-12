@@ -202,7 +202,7 @@ void ofApp::setMidiPort(string pPortName){
 //--------------------------------------------------------------
 void ofApp::newMidiMessage(ofxMidiMessage& message) {
    //addLog("Midi INcoming:" + message.getStatusString(message.status));
-   
+   cout << "Midi in: " << message.getStatusString(message.status) << " " << ofToString(message.pitch) << " " << ofToString(message.channel) << endl;
     switch(message.status) {
         case MIDI_TIME_CLOCK:
             break;

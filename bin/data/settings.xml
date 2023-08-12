@@ -1,34 +1,34 @@
-<midiInPort>STARRYPAD</midiInPort>
-<Pad_0_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/pads</Pad_0_Directory>
-<Pad_0_Sample>7</Pad_0_Sample>
-<Pad_1_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/pads</Pad_1_Directory>
-<Pad_1_Sample>11</Pad_1_Sample>
-<Pad_2_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/melody</Pad_2_Directory>
-<Pad_2_Sample>2</Pad_2_Sample>
-<Pad_3_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/percussions</Pad_3_Directory>
-<Pad_3_Sample>2</Pad_3_Sample>
+<midiInPort>IAC-Treiber Bus 1</midiInPort>
+<Pad_0_Directory></Pad_0_Directory>
+<Pad_0_Sample>0</Pad_0_Sample>
+<Pad_1_Directory></Pad_1_Directory>
+<Pad_1_Sample>0</Pad_1_Sample>
+<Pad_2_Directory></Pad_2_Directory>
+<Pad_2_Sample>0</Pad_2_Sample>
+<Pad_3_Directory></Pad_3_Directory>
+<Pad_3_Sample>0</Pad_3_Sample>
 <Pad_4_Directory></Pad_4_Directory>
 <Pad_4_Sample>0</Pad_4_Sample>
 <Pad_5_Directory></Pad_5_Directory>
 <Pad_5_Sample>0</Pad_5_Sample>
-<Pad_6_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/claps</Pad_6_Directory>
-<Pad_6_Sample>6</Pad_6_Sample>
-<Pad_7_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/claps</Pad_7_Directory>
-<Pad_7_Sample>4</Pad_7_Sample>
-<Pad_8_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/toms</Pad_8_Directory>
-<Pad_8_Sample>12</Pad_8_Sample>
-<Pad_9_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/toms</Pad_9_Directory>
-<Pad_9_Sample>14</Pad_9_Sample>
-<Pad_10_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/claps</Pad_10_Directory>
-<Pad_10_Sample>3</Pad_10_Sample>
-<Pad_11_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/pads</Pad_11_Directory>
-<Pad_11_Sample>1</Pad_11_Sample>
-<Pad_12_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
-<Pad_12_Sample>9</Pad_12_Sample>
-<Pad_13_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
-<Pad_13_Sample>6</Pad_13_Sample>
-<Pad_14_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
-<Pad_14_Sample>3</Pad_14_Sample>
-<Pad_15_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
-<Pad_15_Sample>3</Pad_15_Sample>
-<controlpreset>Starrypad, Keys &apos;-&apos; and &apos;+&apos; for PREV and NEXT</controlpreset>
+<Pad_6_Directory></Pad_6_Directory>
+<Pad_6_Sample>0</Pad_6_Sample>
+<Pad_7_Directory></Pad_7_Directory>
+<Pad_7_Sample>0</Pad_7_Sample>
+<Pad_8_Directory></Pad_8_Directory>
+<Pad_8_Sample>0</Pad_8_Sample>
+<Pad_9_Directory></Pad_9_Directory>
+<Pad_9_Sample>0</Pad_9_Sample>
+<Pad_10_Directory></Pad_10_Directory>
+<Pad_10_Sample>0</Pad_10_Sample>
+<Pad_11_Directory></Pad_11_Directory>
+<Pad_11_Sample>0</Pad_11_Sample>
+<Pad_12_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
+<Pad_12_Sample>1</Pad_12_Sample>
+<Pad_13_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
+<Pad_13_Sample>1</Pad_13_Sample>
+<Pad_14_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
+<Pad_14_Sample>1</Pad_14_Sample>
+<Pad_15_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
+<Pad_15_Sample>1</Pad_15_Sample>
+<controlpreset>Launchkey Mini MK3</controlpreset>
