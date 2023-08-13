@@ -253,14 +253,16 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 			break;
 		}else if((message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_PREV)){
-			//cout << "PREVIOUS Sample" << endl;
-			selectPreviousSample(iActivePad);
-			break;
+			if(message.velocity > 0){
+				selectPreviousSample(iActivePad);
+				break;
+			}
 		}else if((message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_NEXT)){
-			//cout << "NEXT Sample" << endl;
-			selectNextSample(iActivePad);
-			break;
+			if(message.velocity > 0){
+				selectNextSample(iActivePad);
+				break;
+			}
 		}
 
 	}
