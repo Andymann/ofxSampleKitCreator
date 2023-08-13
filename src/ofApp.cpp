@@ -3,7 +3,8 @@ const int PADCOUNT=16;
 //--------------------------------------------------------------
 void ofApp::setup(){
 	#ifdef TARGET_OSX
-        addLog("System: OSX");
+        //addLog("System: OSX");
+		cout << "System: OSX" << endl ;
     #endif
 
 	ofSetEscapeQuitsApp(false);
@@ -313,6 +314,8 @@ void ofApp::buildGui(){
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
 	btnRandomize = bottomGui->addButton(LBL_RANDOMIZE);
+	
+	bottomGui->addLabel("");
 	bottomGui->addLabel("");
 	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
 //	btnExportAsSingleWav = bottomGui->addButton(LBL_EXPORTASSINGLEWAV);
@@ -320,6 +323,8 @@ void ofApp::buildGui(){
     bottomGui->onButtonEvent(this, &ofApp::onButtonEvent);
     bottomGui->setTheme(new myCustomTheme() );
     bottomGui->setWidth( ofGetScreenWidth() );
+
+	btnRandomize->setTheme(new pinkTheme());
 }
 
 //--------------------------------------------------------------
@@ -345,11 +350,9 @@ void ofApp::restoreSettings(){
 	//cout << ofFilePath::addTrailingSlash(ofFilePath::getAbsolutePath( ofToDataPath("") + ".." )) ;
 
 	if (xmlSettings.loadFile( ofFilePath::addTrailingSlash(ofFilePath::getAbsolutePath( ofToDataPath("") + ".." )) + "settings.xml" )) {
-        //addLog("XML loaded");
-		cout << "XML Settings loaded" << endl;
+        cout << "XML Settings loaded" << endl;
     }else{
-        //addLog("Could not load xml. Reverting to default values.");
-		cout << "Could not load xml. Reverting to default values." << endl;
+        cout << "Could not load xml. Reverting to default values." << endl;
     }
     
     string sMidiInPort = xmlSettings.getValue("midiInPort", "");
@@ -393,10 +396,10 @@ void ofApp::restoreSettings(){
 	string tmp=xmlSettings.getValue("controlpreset", "");
 	if(tmp.length()>0){
 		setActivePreset(tmp);
-		addLog("Control-Preset " + tmp + " loaded.");
+		cout << " Control-Preset " << tmp << " loaded" << endl;
 		cmbPresets->setLabel(tmp);
     }else{
-		addLog("Could not load Control-Preset");
+		cout << "Coudl ot load Control-Preset" << endl;
 	}
 
 	int iTmp = xmlSettings.getValue("velocityhandling", 0);
@@ -434,7 +437,7 @@ void ofApp::saveSettings(){
 
 void ofApp::loadPresets(){
 	if (xmlPresets.loadFile("inputPresets.xml")) {
-        addLog("Presetfile loaded");
+       	cout << "Presetfile loaded" << endl;
 		//cout << "Tags:" << ofToString(xmlPresets.getNumTags("preset")) << endl;
 		//cout << "Tags:" << ofToString(xmlPresets.getAttribute("preset","name","",0)) << endl;
 
@@ -443,7 +446,7 @@ void ofApp::loadPresets(){
 		}
 
     }else{
-        addLog("Could not load presets. Control app with mouse");
+        cout << "Could not load presets. Control app with mouse" << endl;
     }
 }
 

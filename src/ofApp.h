@@ -141,6 +141,21 @@ public:
     }
 };
 
+class pinkTheme : public ofxDatGuiTheme{
+public:
+    pinkTheme(){
+        font.size = 10;
+		layout.height *=.75;
+		color.background = hex( 0xFF4081);
+		layout.upperCaseLabels = false;
+		layout.vMargin = 2.0f;
+		stripe.visible=false;
+		//stripe.label = ofColor::fromHex(0x294c9e);
+		//stripe.button = ofColor::fromHex(0xFF0000);
+        init();
+    }
+};
+
 class myButton : public ofxDatGuiButton{
 public:
 	myButton(string pLabel):ofxDatGuiButton(pLabel){
