@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.8";
+	const string VERSION="0.9";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -43,6 +43,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBLCMBMIDI = "Click here to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
 	const string LBLCMBVELOCITY = "Select how to treat incomfing midi";
+	const string LBL_RANDOMIZE = "Randomize samples...";
 	const string LBL_EXPORTTOFOLDER = "Export to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
 	const string LBL_VELOCITYFIXED = "Play samples with fixed velocity";
@@ -90,6 +91,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	void loadPresets();
 	void setActivePreset(string pName);
 	void exportToFolder();
+	void randomizeSamples();
 	void exportAsSingleWav();
 
 	ofxDatGui *gui;
@@ -101,6 +103,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	ofxDatGui* panel[16];
 
 	ofxDatGui *bottomGui;
+	ofxDatGuiButton* btnRandomize;
 	ofxDatGuiButton* btnExportToFolder;
 	ofxDatGuiButton* btnExportAsSingleWav;
 	struct padData{
@@ -250,6 +253,16 @@ class myPanel : public ofxDatGui{
 				}
 				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
 				mySample.load( vFiles[iSelectedFile] );
+			}
+		}
+
+		void randomize(){
+			if(vFiles.size()>0){
+				int randomNumber = (int) ofRandom(0,vFiles.size());
+				cout << "RND " << ofToString(randomNumber) <<endl;
+				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
+				mySample.load( vFiles[randomNumber] );
+				iSelectedFile = randomNumber;
 			}
 		}
 

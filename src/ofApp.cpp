@@ -139,6 +139,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 		selectNextSample( slot);
 	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
 		exportToFolder();
+	}else if( e.target->getLabel().compare(LBL_RANDOMIZE)==0){
+		randomizeSamples();
 	}else if( e.target->getLabel().compare(LBL_EXPORTASSINGLEWAV)==0){
 		exportAsSingleWav();
 	}
@@ -283,7 +285,7 @@ void ofApp::buildGui(){
     gui->setTheme(new myCustomTheme() );
     gui->setWidth( ofGetScreenWidth() );
 
-	int iTop = 120;
+	int iTop = 180;
 	int iPadding = 15;
 	panel[0] = new myPanel(12, 12, iTop, WIDTH/4 -12);
 	panel[1] = new myPanel(13, 12+WIDTH/4, iTop, WIDTH/4 -12);
@@ -310,6 +312,8 @@ void ofApp::buildGui(){
 	}
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
+	btnRandomize = bottomGui->addButton(LBL_RANDOMIZE);
+	bottomGui->addLabel("");
 	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
 //	btnExportAsSingleWav = bottomGui->addButton(LBL_EXPORTASSINGLEWAV);
 	bottomGui->addBreak()->setHeight(10.0f);
@@ -503,6 +507,14 @@ void ofApp::exportToFolder(){
 				string tmpFilename = fs::path( tmpFiles ).filename();
 				ofFile::copyFromTo(tmpFiles,path + std::filesystem::path::preferred_separator + tmpFilename , false);
 			}
+		}
+	}
+}
+
+void ofApp::randomizeSamples(){
+	for(int i=0; i<PADCOUNT; i++){
+		if( ((myPanel * )panel[i])->getDirectory().size()!=0) {
+			((myPanel * )panel[i])->randomize();
 		}
 	}
 }
