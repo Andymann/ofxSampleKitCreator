@@ -6,7 +6,7 @@ void ofApp::setup(){
         addLog("System: OSX");
     #endif
 
-	//ofSetEscapeQuitsApp(false);
+	ofSetEscapeQuitsApp(false);
 	ofSetWindowShape(WIDTH, HEIGHT);
     ofSetWindowTitle(TITLE + " v" + VERSION + WEBSITE);
 	//ofSetFullscreen(true);
@@ -253,12 +253,12 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 			break;
 		}else if((message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_PREV)){
-			cout << "PREVIOUS Sample" << endl;
+			//cout << "PREVIOUS Sample" << endl;
 			selectPreviousSample(iActivePad);
 			break;
 		}else if((message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_NEXT)){
-			cout << "NEXT Sample" << endl;
+			//cout << "NEXT Sample" << endl;
 			selectNextSample(iActivePad);
 			break;
 		}

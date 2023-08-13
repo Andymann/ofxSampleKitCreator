@@ -1,4 +1,4 @@
-<midiInPort>Launchkey Mini MK3 MIDI Port</midiInPort>
+<midiInPort>IAC-Treiber Bus 1</midiInPort>
 <Pad_0_Directory></Pad_0_Directory>
 <Pad_0_Sample>0</Pad_0_Sample>
 <Pad_1_Directory></Pad_1_Directory>
@@ -24,12 +24,12 @@
 <Pad_11_Directory></Pad_11_Directory>
 <Pad_11_Sample>0</Pad_11_Sample>
 <Pad_12_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
-<Pad_12_Sample>9</Pad_12_Sample>
+<Pad_12_Sample>17</Pad_12_Sample>
 <Pad_13_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
-<Pad_13_Sample>1</Pad_13_Sample>
+<Pad_13_Sample>9</Pad_13_Sample>
 <Pad_14_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
 <Pad_14_Sample>1</Pad_14_Sample>
 <Pad_15_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
 <Pad_15_Sample>1</Pad_15_Sample>
-<controlpreset>Launchkey Mini MK3</controlpreset>
 <velocityhandling>1</velocityhandling>
+<controlpreset>Launchkey Mini MK3 - Keys</controlpreset>
