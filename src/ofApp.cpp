@@ -336,10 +336,14 @@ void ofApp::showLog(){
 }
 
 void ofApp::restoreSettings(){
-    if (xmlSettings.loadFile("settings.xml")) {
-        addLog("XML loaded");
+	//cout << ofFilePath::addTrailingSlash(ofFilePath::getAbsolutePath( ofToDataPath("") + ".." )) ;
+
+	if (xmlSettings.loadFile( ofFilePath::addTrailingSlash(ofFilePath::getAbsolutePath( ofToDataPath("") + ".." )) + "settings.xml" )) {
+        //addLog("XML loaded");
+		cout << "XML Settings loaded" << endl;
     }else{
-        addLog("Could not load xml. Reverting to default values.");
+        //addLog("Could not load xml. Reverting to default values.");
+		cout << "Could not load xml. Reverting to default values." << endl;
     }
     
     string sMidiInPort = xmlSettings.getValue("midiInPort", "");
