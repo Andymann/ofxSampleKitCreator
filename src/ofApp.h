@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.9";
+	const string VERSION="0.10";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -134,8 +134,9 @@ public:
 		color.background = hex(0x0b2a70 /*0xFF4081*/);
 		layout.upperCaseLabels = false;
 		layout.vMargin = 2.0f;
-		//stripe.visible=false;
-		stripe.label = ofColor::fromHex(0x294c9e);
+		stripe.visible=false;
+		//label.stripe.visible = false;
+		//stripe.label = ofColor::fromHex(0x294c9e);
 		stripe.button = ofColor::fromHex(0xFF0000);
         init();
     }

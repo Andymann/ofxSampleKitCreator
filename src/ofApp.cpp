@@ -250,10 +250,10 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 		(message.pitch == vecPadmapping[i].iPlay) && (vecPadmapping[i].iAction == PAD_PLAYSAMPLE)){
 			if((bIncomingVelocityFixed==true) && (message.velocity>0)){
 				message.velocity = 0x7f;
+				playSample(vecPadmapping[i].iPad, message.velocity);
+				iActivePad = i;
+				break;
 			}
-			playSample(vecPadmapping[i].iPad, message.velocity);
-			iActivePad = i;
-			break;
 		}else if((message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_PREV)){
 			if(message.velocity > 0){
