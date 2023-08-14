@@ -248,8 +248,10 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 	for(int i=0; i<vecPadmapping.size(); i++){
 		if((message.channel == vecPadmapping[i].iChannel) &&
 		(message.pitch == vecPadmapping[i].iPlay) && (vecPadmapping[i].iAction == PAD_PLAYSAMPLE)){
-			if((bIncomingVelocityFixed==true) && (message.velocity>0)){
-				message.velocity = 0x7f;
+			if(message.velocity>0){
+				if(bIncomingVelocityFixed==true){
+					message.velocity = 0x7f;
+				}
 				playSample(vecPadmapping[i].iPad, message.velocity);
 				iActivePad = i;
 				break;
@@ -399,7 +401,7 @@ void ofApp::restoreSettings(){
 		cout << " Control-Preset " << tmp << " loaded" << endl;
 		cmbPresets->setLabel(tmp);
     }else{
-		cout << "Coudl ot load Control-Preset" << endl;
+		cout << "Could not load Control-Preset" << endl;
 	}
 
 	int iTmp = xmlSettings.getValue("velocityhandling", 0);
@@ -451,9 +453,11 @@ void ofApp::loadPresets(){
 }
 
 void ofApp::setActivePreset(string pName){
+	cout << "setActivePreset() " <<  pName << endl;
 	sActivePreset = pName;
-
 	int iWhich;
+
+	//vecPadmapping.clear();
 
 	// Get the index of the selected preset via the position of
 	// its name within the vector that stores the presetnames.
@@ -464,7 +468,15 @@ void ofApp::setActivePreset(string pName){
 		}
 	}
 
+	xmlPresets.popTag();
+	xmlPresets.popTag();
+	xmlPresets.popTag();
+	xmlPresets.popTag();
+
+	vecPadmapping.clear();
+
 	xmlPresets.pushTag("preset",iWhich);
+	//cout << "push preset: " << ofToString(iWhich) << endl;
 	for(int i=0; i<PADCOUNT; i++){
 		xmlPresets.pushTag("trigger", i);
 		
@@ -474,6 +486,7 @@ void ofApp::setActivePreset(string pName){
 		tmp.iPlay = xmlPresets.getValue("note", 0);
 		tmp.iAction = PAD_PLAYSAMPLE;
 		vecPadmapping.push_back(tmp);
+		cout << ofToString(tmp.iPad) << " " << ofToString(tmp.iChannel) << " " <<ofToString(tmp.iPlay) << " " << ofToString(tmp.iAction) << endl;
 		xmlPresets.popTag();
 	}
 
