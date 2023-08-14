@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.10";
+	const string VERSION="0.11";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;

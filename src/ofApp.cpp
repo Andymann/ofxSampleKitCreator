@@ -256,13 +256,13 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 				iActivePad = i;
 				break;
 			}
-		}else if((message.channel == vecPadmapping[i].iChannel) &&
+		}else if((message.pitch == vecPadmapping[i].iPlay) && (message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_PREV)){
 			if(message.velocity > 0){
 				selectPreviousSample(iActivePad);
 				break;
 			}
-		}else if((message.channel == vecPadmapping[i].iChannel) &&
+		}else if((message.pitch == vecPadmapping[i].iPlay) && (message.channel == vecPadmapping[i].iChannel) &&
 		(vecPadmapping[i].iAction == PAD_CONTROL_NEXT)){
 			if(message.velocity > 0){
 				selectNextSample(iActivePad);
@@ -472,7 +472,6 @@ void ofApp::setActivePreset(string pName){
 	xmlPresets.popTag();
 	xmlPresets.popTag();
 	xmlPresets.popTag();
-
 	vecPadmapping.clear();
 
 	xmlPresets.pushTag("preset",iWhich);
@@ -486,7 +485,6 @@ void ofApp::setActivePreset(string pName){
 		tmp.iPlay = xmlPresets.getValue("note", 0);
 		tmp.iAction = PAD_PLAYSAMPLE;
 		vecPadmapping.push_back(tmp);
-		cout << ofToString(tmp.iPad) << " " << ofToString(tmp.iChannel) << " " <<ofToString(tmp.iPlay) << " " << ofToString(tmp.iAction) << endl;
 		xmlPresets.popTag();
 	}
 
@@ -497,6 +495,8 @@ void ofApp::setActivePreset(string pName){
 		tmp.iPlay = xmlPresets.getValue("note", 0);
 		tmp.iAction = PAD_CONTROL_PREV;
 		vecPadmapping.push_back(tmp);
+		//cout << "CTRL Prev " << ofToString(tmp.iPad) << " " << ofToString(tmp.iChannel) << " " <<ofToString(tmp.iPlay) << " " << ofToString(tmp.iAction) << endl;
+		
 		xmlPresets.popTag();
 	}
 	
