@@ -28,8 +28,24 @@
 <Pad_13_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
 <Pad_13_Sample>8</Pad_13_Sample>
 <Pad_14_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
-<Pad_14_Sample>1</Pad_14_Sample>
+<Pad_14_Sample>10</Pad_14_Sample>
 <Pad_15_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
-<Pad_15_Sample>1</Pad_15_Sample>
+<Pad_15_Sample>4</Pad_15_Sample>
 <velocityhandling>1</velocityhandling>
 <controlpreset>Launchkey Mini MK3 - Keys</controlpreset>
+<Pad_0_Lock>0</Pad_0_Lock>
+<Pad_1_Lock>0</Pad_1_Lock>
+<Pad_2_Lock>0</Pad_2_Lock>
+<Pad_3_Lock>0</Pad_3_Lock>
+<Pad_4_Lock>0</Pad_4_Lock>
+<Pad_5_Lock>0</Pad_5_Lock>
+<Pad_6_Lock>0</Pad_6_Lock>
+<Pad_7_Lock>0</Pad_7_Lock>
+<Pad_8_Lock>0</Pad_8_Lock>
+<Pad_9_Lock>0</Pad_9_Lock>
+<Pad_10_Lock>0</Pad_10_Lock>
+<Pad_11_Lock>0</Pad_11_Lock>
+<Pad_12_Lock>1</Pad_12_Lock>
+<Pad_13_Lock>1</Pad_13_Lock>
+<Pad_14_Lock>0</Pad_14_Lock>
+<Pad_15_Lock>0</Pad_15_Lock>

@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.11";
+	const string VERSION="0.14";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -180,7 +180,22 @@ private:
 	int iSlot=-1;
 };
 
+/*
+class myToggle : public ofxDatGuiToggle{
+	public:
+		myToggle(string pLabel, int pSlot):ofxDatGuiToggle(pLabel){
+			cout << "Construct ToggleButton " << ofToString(pSlot) << endl;
+			i=pSlot;
+		}
 
+		void triggerToggle(){
+			cout << "TriggerToggle" << ofToString(i) <<endl;
+		}
+		
+	private:
+		int i;
+};
+*/
 class myPanel : public ofxDatGui{
 
 	public:
@@ -188,12 +203,21 @@ class myPanel : public ofxDatGui{
 		inline static const string LBLPLAY = "Play";
 		inline static const string LBLPREVIOUS = "Previous";
 		inline static const string LBLNEXT = "Next";
+		inline static const string LBLLOCK = "Lock";
 		
 		myPanel(int pIndex, int pX, int pY, int pWidth):ofxDatGui(pX, pY){
 			iSlot = pIndex;
 			setTheme(new panelTheme());
 			setWidth(pWidth);
-			addHeader("Slot " + ofToString((pIndex)));
+			//addHeader("Slot " + ofToString((pIndex)));
+			//myPanel::btnLock = ((myToggle * )addToggle(LBLLOCK, pIndex));
+			//myPanel::add((myToggle * )btnLock);
+			
+			//btnLock = new myToggle(LBLLOCK, pIndex);
+			//this->addToggle((myToggle *)btnLock);
+			//myPanel::btnLock = ((myToggle * )addButton(LBLLOCK, pIndex));
+			btnLock = addToggle(LBLLOCK);
+			myPanel::btnLock->setLabel("Slot " + ofToString(pIndex));
 			myPanel::lblFolder = ((myButton * )addLabel(" --- "));
 			myPanel::btnBrowse = ((myButton * )addButton(LBLBROWSE));
 			myPanel::btnPlay = ((myButton * )addButton("Play"));
@@ -206,6 +230,21 @@ class myPanel : public ofxDatGui{
 			myPanel::btnPrevious->setSlot(pIndex);
 			myPanel::btnNext->setSlot(pIndex);
 
+			btnLock->onToggleEvent(this, &myPanel::triggerToggle);
+
+		}
+/*
+		myToggle* addToggle(string label, int pIndex)
+		{
+			myToggle* button = new myToggle(label, pIndex);
+			button->onToggleEvent(this, &ofxDatGui::onToggleEventCallback);
+			//attachItem(button);
+			//return button;
+		}
+*/		
+		void triggerToggle(ofxDatGuiToggleEvent e){
+			cout << "ofApp.h TriggerToggle " << ofToString(iSlot) << " " << e.checked <<endl;
+			bIsLocked = e.checked;
 
 		}
 
@@ -225,6 +264,9 @@ class myPanel : public ofxDatGui{
 				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
 				mySample.load( vFiles[iSelectedFile] );
 			}
+
+			// When intentionally selecting a new Directory the slot will be unlocked
+			setLock(false);
 		} 
 
 		string getDirectory(){
@@ -247,6 +289,10 @@ class myPanel : public ofxDatGui{
 		}
 
 		void selectNextSample(){
+			if(bIsLocked){
+				cout << "Pad " << iSlot << " is locked" << endl;
+				return;
+			}
 			if(vFiles.size()>0){
 				if(iSelectedFile<vFiles.size()-1){
 					iSelectedFile++;
@@ -261,6 +307,10 @@ class myPanel : public ofxDatGui{
 		}
 
 		void selectPreviousSample(){
+			if(bIsLocked){
+				cout << "Pad " << iSlot << " is locked" << endl;
+				return;
+			}
 			if(vFiles.size()>0){
 				if(iSelectedFile>0){
 					iSelectedFile--;
@@ -273,6 +323,10 @@ class myPanel : public ofxDatGui{
 		}
 
 		void randomize(){
+			if(bIsLocked){
+				cout << "Pad " << iSlot << " is locked" << endl;
+				return;
+			}
 			if(vFiles.size()>0){
 				int randomNumber = (int) ofRandom(0,vFiles.size());
 				cout << "RND " << ofToString(randomNumber) <<endl;
@@ -316,6 +370,16 @@ class myPanel : public ofxDatGui{
 			return iSlot;
 		}
 
+		bool getLock(){
+			return bIsLocked;
+		}
+
+		void setLock(bool p){
+			bIsLocked = p;
+			btnLock->setChecked( p );
+		}
+
+
 
 	private:
 		myButton* lblFolder;
@@ -324,11 +388,14 @@ class myPanel : public ofxDatGui{
 		myButton* btnPrevious;
 		myButton* btnNext;
 		myButton* lblFilename; 
+		//myToggle* btnLock;
+		ofxDatGuiToggle* btnLock;
 
 		string sDirectory;
 		vector<string> vFiles;
 		int iSelectedFile = -1;
 		int iSlot;
+		bool bIsLocked = false;
 
 		bool endsWith(std::string const &str, std::string const &suffix) {
 			if (str.length() < suffix.length()) {

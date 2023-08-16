@@ -14,9 +14,13 @@ void ofApp::setup(){
 	ofSetBackgroundColor(ofColor(20, 20, 40));
     ofSetVerticalSync(true);
 	loadPresets();
-    
 	buildGui();
-    restoreSettings();
+	restoreSettings();
+
+	for(int i=0; i<PADCOUNT; i++){
+		int iSlot = ((myPanel * )panel[i])->getSlot();
+		bool bIsLocked = ((myPanel * )panel[i])->getLock();
+	}
 
 }
 
@@ -128,15 +132,19 @@ void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
 }
 
 void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
-    //cout << "onButtonEvent: Slot "<< ofToString( ((myButton * )e.target)->getSlot()) << " " << e.target->getLabel() << " Clicked" << endl;
+    //cout << "onButtonEvent: Slot "<< ofToString( ((myButton * )e.target)->getSlot()) << " " << e.target->getLabel() << " " << e.target->getName() <<" Clicked" << endl;
 	int slot = ((myButton * )e.target)->getSlot();
 	if( e.target->getLabel().compare(myPanel::LBLBROWSE)==0){
+		//int slot = 1;//((myButton * )e.target)->getSlot();
 		setSampleFolder( slot );
 	}else if( e.target->getLabel().compare(myPanel::LBLPLAY)==0){
+		//int slot = 1;//((myButton * )e.target)->getSlot();
 		playSample( slot, 127 );
 	}else if( e.target->getLabel().compare(myPanel::LBLPREVIOUS)==0){
+		//int slot = 1;//((myButton * )e.target)->getSlot();
 		selectPreviousSample( slot );
 	}else if( e.target->getLabel().compare(myPanel::LBLNEXT)==0){
+		//int slot = 1;//((myButton * )e.target)->getSlot();
 		selectNextSample( slot);
 	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
 		exportToFolder();
@@ -144,6 +152,9 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 		randomizeSamples();
 	}else if( e.target->getLabel().compare(LBL_EXPORTASSINGLEWAV)==0){
 		exportAsSingleWav();
+	}else if( e.target->getName().compare(myPanel::LBLLOCK)==0){
+		cout << "ofApp.cpp LOCK Button" <<endl;
+		//((myPanel * )e.target)->triggerToggle();
 	}
 }
 
@@ -162,7 +173,6 @@ void ofApp::setSampleFolder(int pSlot){
 }
 
 void ofApp::playSample(int pSlot, int pVelocity){
-	//cout << ((myPanel * )panel[pSlot])->getSelectedSample() << endl;
 	for(int i=0; i<PADCOUNT; i++){
 		if( ((myPanel * )panel[i])->getSlot()==pSlot) {
 			((myPanel * )panel[i])->play(pVelocity);
@@ -274,7 +284,7 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 }
 
 void ofApp::buildGui(){
-    font.load(OF_TTF_MONO, 16);
+	font.load(OF_TTF_MONO, 16);
 
     gui = new ofxDatGui( ofxDatGuiAnchor::TOP_LEFT );
     vector<string> opts = {midiIn.getInPortList()/*"option - 1", "option - 2", "option - 3", "option - 4"*/};
@@ -294,7 +304,7 @@ void ofApp::buildGui(){
 	panel[1] = new myPanel(13, 12+WIDTH/4, iTop, WIDTH/4 -12);
 	panel[2] = new myPanel(14, 12+2*WIDTH/4, iTop, WIDTH/4 -12);
 	panel[3] = new myPanel(15, 12+3*WIDTH/4, iTop, WIDTH/4 -24);
-
+	
 	panel[4] = new myPanel(8, 12, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
 	panel[5] = new myPanel(9, 12+WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
 	panel[6] = new myPanel(10, 12+2*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
@@ -311,13 +321,14 @@ void ofApp::buildGui(){
 	panel[15] = new myPanel(3, 12+3*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-24);
 
 	for(int i=0; i<PADCOUNT; i++){
-		panel[i]->onButtonEvent(this, &ofApp::onButtonEvent);	
+		((myPanel * )panel[i])->onButtonEvent(this, &ofApp::onButtonEvent);	
 	}
+
+
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
 	btnRandomize = bottomGui->addButton(LBL_RANDOMIZE);
 	
-	bottomGui->addLabel("");
 	bottomGui->addLabel("");
 	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
 //	btnExportAsSingleWav = bottomGui->addButton(LBL_EXPORTASSINGLEWAV);
@@ -391,9 +402,17 @@ void ofApp::restoreSettings(){
 			string tmp=xmlSettings.getValue("Pad_" + ofToString(i) + "_Sample", "");
 			if(ofToInt(tmp)!=0){
 				((myPanel * )panel[i])->setSelectedSampleIndex((ofToInt(tmp))-1);
+
+				 string sLocked = xmlSettings.getValue("Pad_" + ofToString(i) + "_Lock", "0");
+				 //cout << "LOCKED: " + sLocked << endl;
+				 bool bIsLocked = ofToInt(sLocked) ? true:false;
+				 //cout << "LOCKED: " + ofToString(bIsLocked) << "..." << endl;
+				((myPanel * )panel[i])->setLock((bIsLocked));
 			}
 		}
 	}
+
+
 
 	string tmp=xmlSettings.getValue("controlpreset", "");
 	if(tmp.length()>0){
@@ -418,13 +437,13 @@ void ofApp::saveSettings(){
 	for(int i=0; i<PADCOUNT; i++){
 		xmlSettings.setValue("Pad_" + ofToString(i) + "_Directory",((myPanel * )panel[i])->getDirectory());
 		xmlSettings.setValue("Pad_" + ofToString(i) + "_Sample",((myPanel * )panel[i])->getSelectedSampleIndex()+1); //+1 wegen returncode von ofToString beim restore()
+		xmlSettings.setValue("Pad_" + ofToString(i) + "_Lock",((myPanel * )panel[i])->getLock());
 	}
 
 	//string tmp = cmbVelocity->getLabel();
 	//cout << "SaveSettings uku:" << tmp << endl;
 	for(int i=0; i<vVelo.size(); i++){
 		if(vVelo[i].compare(cmbVelocity->getLabel())==0){
-			//cout << "SaveSettings(): " << cmbVelocity->getLabel() << endl;
 			xmlSettings.setValue("velocityhandling", i);
 			break;
 		}
