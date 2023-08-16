@@ -135,17 +135,13 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
     //cout << "onButtonEvent: Slot "<< ofToString( ((myButton * )e.target)->getSlot()) << " " << e.target->getLabel() << " " << e.target->getName() <<" Clicked" << endl;
 	int slot = ((myButton * )e.target)->getSlot();
 	if( e.target->getLabel().compare(myPanel::LBLBROWSE)==0){
-		//int slot = 1;//((myButton * )e.target)->getSlot();
-		setSampleFolder( slot );
+		//Event is now handled within the panel;
 	}else if( e.target->getLabel().compare(myPanel::LBLPLAY)==0){
-		//int slot = 1;//((myButton * )e.target)->getSlot();
-		playSample( slot, 127 );
+		//Event is now handled within the panel;
 	}else if( e.target->getLabel().compare(myPanel::LBLPREVIOUS)==0){
-		//int slot = 1;//((myButton * )e.target)->getSlot();
-		selectPreviousSample( slot );
+		//Event is now handled within the panel;
 	}else if( e.target->getLabel().compare(myPanel::LBLNEXT)==0){
-		//int slot = 1;//((myButton * )e.target)->getSlot();
-		selectNextSample( slot);
+		//Event is now handled within the panel;
 	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
 		exportToFolder();
 	}else if( e.target->getLabel().compare(LBL_RANDOMIZE)==0){
@@ -153,37 +149,7 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 	}else if( e.target->getLabel().compare(LBL_EXPORTASSINGLEWAV)==0){
 		exportAsSingleWav();
 	}else if( e.target->getName().compare(myPanel::LBLLOCK)==0){
-		cout << "ofApp.cpp LOCK Button" <<endl;
-		//((myPanel * )e.target)->triggerToggle();
-	}
-}
-
-
-void ofApp::setSampleFolder(int pSlot){
-	ofFileDialogResult result = ofSystemLoadDialog("Select Sample Folder", true);
-	if(result.bSuccess) {
-		string path = result.getPath();
-		for(int i=0; i<PADCOUNT; i++){
-			if( ((myPanel * )panel[i])->getSlot()==pSlot) {
-				((myPanel * )panel[i])->setDirectory(path);
-				break;
-			}
-		}
-	}
-}
-
-void ofApp::playSample(int pSlot, int pVelocity){
-	for(int i=0; i<PADCOUNT; i++){
-		if( ((myPanel * )panel[i])->getSlot()==pSlot) {
-			((myPanel * )panel[i])->play(pVelocity);
-			break;
-		}
-	}
-}
-
-void ofApp::stopAllSamples(){
-	for(int i=0; i<PADCOUNT; i++){
-		((myPanel * )panel[i])->stop();
+		//Event is now handled within the panel;
 	}
 }
 
@@ -202,6 +168,21 @@ void ofApp::selectNextSample(int pSlot){
 			((myPanel * )panel[i])->selectNextSample();
 			break;
 		}
+	}
+}
+
+void ofApp::playSample(int pSlot, int pVelocity){
+	for(int i=0; i<PADCOUNT; i++){
+		if( ((myPanel * )panel[i])->getSlot()==pSlot) {
+			((myPanel * )panel[i])->play(pVelocity);
+			break;
+		}
+	}
+}
+
+void ofApp::stopAllSamples(){
+	for(int i=0; i<PADCOUNT; i++){
+		((myPanel * )panel[i])->stop();
 	}
 }
 
@@ -294,7 +275,6 @@ void ofApp::buildGui(){
 
     // once the gui has been assembled, register callbacks to listen for component specific events //
     gui->onDropdownEvent(this, &ofApp::onDropdownEvent);
-
     gui->setTheme(new myCustomTheme() );
     gui->setWidth( ofGetScreenWidth() );
 
@@ -323,8 +303,6 @@ void ofApp::buildGui(){
 	for(int i=0; i<PADCOUNT; i++){
 		((myPanel * )panel[i])->onButtonEvent(this, &ofApp::onButtonEvent);	
 	}
-
-
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
 	btnRandomize = bottomGui->addButton(LBL_RANDOMIZE);

@@ -78,11 +78,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	void onDropdownEvent(ofxDatGuiDropdownEvent e);
 	void onButtonEvent(ofxDatGuiButtonEvent e);
 
-	void setSampleFolder(int pSlot);
-	void playSample(int pSlot, int pVelocity);
+	//void setSampleFolder(int pSlot);
 	void stopAllSamples();
-	void selectPreviousSample(int pSlot);
-	void selectNextSample(int pSlot);
 	
 	void buildGui();
 	void processMidi_ControlChange(ofxMidiMessage& message);
@@ -90,6 +87,9 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	void loadPresets();
 	void setActivePreset(string pName);
+	void playSample(int pSlot, int pVelocity);
+	void selectPreviousSample(int pSlot);
+	void selectNextSample(int pSlot);
 	void exportToFolder();
 	void randomizeSamples();
 	void exportAsSingleWav();
@@ -180,22 +180,6 @@ private:
 	int iSlot=-1;
 };
 
-/*
-class myToggle : public ofxDatGuiToggle{
-	public:
-		myToggle(string pLabel, int pSlot):ofxDatGuiToggle(pLabel){
-			cout << "Construct ToggleButton " << ofToString(pSlot) << endl;
-			i=pSlot;
-		}
-
-		void triggerToggle(){
-			cout << "TriggerToggle" << ofToString(i) <<endl;
-		}
-		
-	private:
-		int i;
-};
-*/
 class myPanel : public ofxDatGui{
 
 	public:
@@ -209,15 +193,10 @@ class myPanel : public ofxDatGui{
 			iSlot = pIndex;
 			setTheme(new panelTheme());
 			setWidth(pWidth);
-			//addHeader("Slot " + ofToString((pIndex)));
-			//myPanel::btnLock = ((myToggle * )addToggle(LBLLOCK, pIndex));
-			//myPanel::add((myToggle * )btnLock);
 			
-			//btnLock = new myToggle(LBLLOCK, pIndex);
-			//this->addToggle((myToggle *)btnLock);
-			//myPanel::btnLock = ((myToggle * )addButton(LBLLOCK, pIndex));
 			btnLock = addToggle(LBLLOCK);
 			myPanel::btnLock->setLabel("Slot " + ofToString(pIndex));
+			
 			myPanel::lblFolder = ((myButton * )addLabel(" --- "));
 			myPanel::btnBrowse = ((myButton * )addButton(LBLBROWSE));
 			myPanel::btnPlay = ((myButton * )addButton("Play"));
@@ -230,7 +209,11 @@ class myPanel : public ofxDatGui{
 			myPanel::btnPrevious->setSlot(pIndex);
 			myPanel::btnNext->setSlot(pIndex);
 
-			btnLock->onToggleEvent(this, &myPanel::triggerToggle);
+			btnLock->onToggleEvent(this, &myPanel::btnActionTriggerToggle);
+			btnNext->onButtonEvent(this, &myPanel::btnActionNextSample);
+			btnPrevious->onButtonEvent(this, &myPanel::btnActionPreviousSample);
+			btnPlay->onButtonEvent(this, &myPanel::btnActionPlaySample);
+			btnBrowse->onButtonEvent(this, &myPanel::btnActionSetDirectory);
 
 		}
 /*
@@ -242,10 +225,29 @@ class myPanel : public ofxDatGui{
 			//return button;
 		}
 */		
-		void triggerToggle(ofxDatGuiToggleEvent e){
+		void btnActionTriggerToggle(ofxDatGuiToggleEvent e){
 			cout << "ofApp.h TriggerToggle " << ofToString(iSlot) << " " << e.checked <<endl;
 			bIsLocked = e.checked;
+		}
 
+		void btnActionNextSample(ofxDatGuiButtonEvent e){
+			selectNextSample();
+		}
+
+		void btnActionPreviousSample(ofxDatGuiButtonEvent e){
+			selectPreviousSample();
+		}
+
+		void btnActionPlaySample(ofxDatGuiButtonEvent e){
+			play(127.0);
+		}
+
+		void btnActionSetDirectory(ofxDatGuiButtonEvent e){
+			ofFileDialogResult result = ofSystemLoadDialog("Select Sample Folder", true);
+			if(result.bSuccess) {
+				string path = result.getPath();
+				setDirectory(path);
+			}
 		}
 
 		void setDirectory(string pDirectory){
@@ -388,7 +390,6 @@ class myPanel : public ofxDatGui{
 		myButton* btnPrevious;
 		myButton* btnNext;
 		myButton* lblFilename; 
-		//myToggle* btnLock;
 		ofxDatGuiToggle* btnLock;
 
 		string sDirectory;
