@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.14";
+	const string VERSION="0.15";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -44,7 +44,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBLCMBPRESET = "Select Control-Preset";
 	const string LBLCMBVELOCITY = "Select how to treat incomfing midi";
 	const string LBL_RANDOMIZE = "Randomize samples...";
-	const string LBL_EXPORTTOFOLDER = "Export to Folder";
+	const string LBL_EXPORTTOFOLDER = "Export Samples to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
 	const string LBL_VELOCITYFIXED = "Play samples with fixed velocity";
 	const string LBL_VELOCITYVARI = "Play samples with Controller's velocity";

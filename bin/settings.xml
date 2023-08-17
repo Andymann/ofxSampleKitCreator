@@ -1,4 +1,4 @@
-<midiInPort>IAC-Treiber Bus 1</midiInPort>
+<midiInPort>virtual1</midiInPort>
 <Pad_0_Directory></Pad_0_Directory>
 <Pad_0_Sample>0</Pad_0_Sample>
 <Pad_1_Directory></Pad_1_Directory>
@@ -23,14 +23,14 @@
 <Pad_10_Sample>0</Pad_10_Sample>
 <Pad_11_Directory></Pad_11_Directory>
 <Pad_11_Sample>0</Pad_11_Sample>
-<Pad_12_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
-<Pad_12_Sample>20</Pad_12_Sample>
-<Pad_13_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
-<Pad_13_Sample>8</Pad_13_Sample>
-<Pad_14_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
-<Pad_14_Sample>7</Pad_14_Sample>
-<Pad_15_Directory>/Users/andyfischer/Music/_Samples/BigUmami/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
-<Pad_15_Sample>4</Pad_15_Sample>
+<Pad_12_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/kicks</Pad_12_Directory>
+<Pad_12_Sample>17</Pad_12_Sample>
+<Pad_13_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/snares</Pad_13_Directory>
+<Pad_13_Sample>1</Pad_13_Sample>
+<Pad_14_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/closed hats</Pad_14_Directory>
+<Pad_14_Sample>1</Pad_14_Sample>
+<Pad_15_Directory>/Users/andyfischer/Documents/_temp/big umami bombz vol I (192sounds)/open hats</Pad_15_Directory>
+<Pad_15_Sample>1</Pad_15_Sample>
 <velocityhandling>1</velocityhandling>
 <controlpreset>Launchkey Mini MK3 - Keys</controlpreset>
 <Pad_0_Lock>0</Pad_0_Lock>
@@ -45,7 +45,7 @@
 <Pad_9_Lock>0</Pad_9_Lock>
 <Pad_10_Lock>0</Pad_10_Lock>
 <Pad_11_Lock>0</Pad_11_Lock>
-<Pad_12_Lock>1</Pad_12_Lock>
-<Pad_13_Lock>1</Pad_13_Lock>
+<Pad_12_Lock>0</Pad_12_Lock>
+<Pad_13_Lock>0</Pad_13_Lock>
 <Pad_14_Lock>0</Pad_14_Lock>
 <Pad_15_Lock>0</Pad_15_Lock>

@@ -133,15 +133,20 @@ void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
 
 void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
     //cout << "onButtonEvent: Slot "<< ofToString( ((myButton * )e.target)->getSlot()) << " " << e.target->getLabel() << " " << e.target->getName() <<" Clicked" << endl;
-	int slot = ((myButton * )e.target)->getSlot();
+	//int slot = ((myButton * )e.target)->getSlot();
 	if( e.target->getLabel().compare(myPanel::LBLBROWSE)==0){
 		//Event is now handled within the panel;
 	}else if( e.target->getLabel().compare(myPanel::LBLPLAY)==0){
 		//Event is now handled within the panel;
+		// BUT ...
+		//iActivePad = ((myButton * )e.target)->getSlot();
+		//cout << "iActivePad: " << ofToString(iActivePad) << endl;
 	}else if( e.target->getLabel().compare(myPanel::LBLPREVIOUS)==0){
 		//Event is now handled within the panel;
+		//selectPreviousSample(iActivePad);
 	}else if( e.target->getLabel().compare(myPanel::LBLNEXT)==0){
 		//Event is now handled within the panel;
+		//selectNextSample(iActivePad);
 	}else if( e.target->getLabel().compare(LBL_EXPORTTOFOLDER)==0){
 		exportToFolder();
 	}else if( e.target->getLabel().compare(LBL_RANDOMIZE)==0){
