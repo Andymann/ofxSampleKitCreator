@@ -150,7 +150,7 @@ public:
     slotTheme(){
         font.size = 10;
 		layout.height *=.75;
-		color.background = hex( 0xcc2323 /*0xFF4081*/);
+		color.background = hex( 0xc93a3a /*0xFF4081*/);
 		layout.upperCaseLabels = false;
 		layout.vMargin = 2.0f;
 		stripe.visible=false;
