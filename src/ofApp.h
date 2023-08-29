@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.15";
+	const string VERSION="0.16";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -44,6 +44,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBLCMBPRESET = "Select Control-Preset";
 	const string LBLCMBVELOCITY = "Select how to treat incomfing midi";
 	const string LBL_RANDOMIZE = "Randomize samples...";
+	const string LBL_PLAYSAMPLESINORDER = "Play samples in order";
 	const string LBL_EXPORTTOFOLDER = "Export Samples to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
 	const string LBL_VELOCITYFIXED = "Play samples with fixed velocity";
@@ -93,6 +94,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	void exportToFolder();
 	void randomizeSamples();
 	void exportAsSingleWav();
+	void playSamplesInOrder();
 
 	ofxDatGui *gui;
 	ofxDatGuiDropdown* cmbMidiIn;
@@ -104,6 +106,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	ofxDatGui *bottomGui;
 	ofxDatGuiButton* btnRandomize;
+	ofxDatGuiButton* btnPlaySamplesInOrder;
 	ofxDatGuiButton* btnExportToFolder;
 	ofxDatGuiButton* btnExportAsSingleWav;
 	struct padData{
@@ -126,9 +129,9 @@ public:
     }
 };
 
-class panelTheme : public ofxDatGuiTheme{
+class buttonTheme : public ofxDatGuiTheme{
 public:
-    panelTheme(){
+    buttonTheme(){
         font.size = 10;
 		layout.height *=.75;
 		color.background = hex(0x0b2a70 /*0xFF4081*/);
@@ -142,12 +145,27 @@ public:
     }
 };
 
-class pinkTheme : public ofxDatGuiTheme{
+class slotTheme : public ofxDatGuiTheme{
 public:
-    pinkTheme(){
+    slotTheme(){
         font.size = 10;
 		layout.height *=.75;
-		color.background = hex( 0xFF4081);
+		color.background = hex( 0xcc2323 /*0xFF4081*/);
+		layout.upperCaseLabels = false;
+		layout.vMargin = 2.0f;
+		stripe.visible=false;
+		//stripe.label = ofColor::fromHex(0x294c9e);
+		//stripe.button = ofColor::fromHex(0xFF0000);
+        init();
+    }
+};
+
+class labelTheme : public ofxDatGuiTheme{
+public:
+    labelTheme(){
+        font.size = 10;
+		layout.height *=.75;
+		color.background = hex( 0x444444);
 		layout.upperCaseLabels = false;
 		layout.vMargin = 2.0f;
 		stripe.visible=false;
@@ -160,7 +178,7 @@ public:
 class myButton : public ofxDatGuiButton{
 public:
 	myButton(string pLabel):ofxDatGuiButton(pLabel){
-
+		
 	}
 	
 	void setSlot(int p){
@@ -190,19 +208,31 @@ class myPanel : public ofxDatGui{
 		inline static const string LBLLOCK = "Lock";
 		
 		myPanel(int pIndex, int pX, int pY, int pWidth):ofxDatGui(pX, pY){
+
 			iSlot = pIndex;
-			setTheme(new panelTheme());
 			setWidth(pWidth);
 			
 			btnLock = addToggle(LBLLOCK);
 			myPanel::btnLock->setLabel("Slot " + ofToString(pIndex));
+			myPanel::btnLock->setTheme(new slotTheme() );
 			
-			myPanel::lblFolder = ((myButton * )addLabel(" --- "));
 			myPanel::btnBrowse = ((myButton * )addButton(LBLBROWSE));
+			myPanel::btnBrowse -> setTheme(new buttonTheme());
+
+			myPanel::lblFolder = ((myButton * )addLabel(" --- "));
+			myPanel::lblFolder -> setTheme(new labelTheme());
+
 			myPanel::btnPlay = ((myButton * )addButton("Play"));
+			myPanel::btnPlay -> setTheme( new buttonTheme);
+
 			myPanel::btnPrevious = ((myButton * )addButton("Previous"));
+			myPanel::btnPrevious -> setTheme(new buttonTheme());
+
 			myPanel::btnNext = ((myButton * )addButton("Next"));
+			myPanel::btnNext -> setTheme(new buttonTheme());
+
 			myPanel::lblFilename = ((myButton * )addLabel("Filename"));
+			myPanel::lblFilename -> setTheme(new labelTheme());
 
 			myPanel::btnBrowse->setSlot(pIndex);
 			myPanel::btnPlay->setSlot(pIndex);
@@ -216,15 +246,7 @@ class myPanel : public ofxDatGui{
 			btnBrowse->onButtonEvent(this, &myPanel::btnActionSetDirectory);
 
 		}
-/*
-		myToggle* addToggle(string label, int pIndex)
-		{
-			myToggle* button = new myToggle(label, pIndex);
-			button->onToggleEvent(this, &ofxDatGui::onToggleEventCallback);
-			//attachItem(button);
-			//return button;
-		}
-*/		
+
 		void btnActionTriggerToggle(ofxDatGuiToggleEvent e){
 			cout << "ofApp.h TriggerToggle " << ofToString(iSlot) << " " << e.checked <<endl;
 			bIsLocked = e.checked;
@@ -341,6 +363,10 @@ class myPanel : public ofxDatGui{
 		void play(int pVelocity){
 			mySample.setVolume(pVelocity/127.0);
 			mySample.play();
+		}
+
+		bool isPlaying(){
+			return mySample.isPlaying();
 		}
 
 		void stop(){

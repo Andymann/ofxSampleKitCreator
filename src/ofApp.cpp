@@ -12,7 +12,7 @@ void ofApp::setup(){
     ofSetWindowTitle(TITLE + " v" + VERSION + WEBSITE);
 	//ofSetFullscreen(true);
 	ofSetBackgroundColor(ofColor(20, 20, 40));
-    ofSetVerticalSync(true);
+    //ofSetVerticalSync(true);
 	loadPresets();
 	buildGui();
 	restoreSettings();
@@ -155,6 +155,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 		exportAsSingleWav();
 	}else if( e.target->getName().compare(myPanel::LBLLOCK)==0){
 		//Event is now handled within the panel;
+	}else if( e.target->getName().compare(LBL_PLAYSAMPLESINORDER)==0){
+		playSamplesInOrder();
 	}
 }
 
@@ -190,6 +192,24 @@ void ofApp::stopAllSamples(){
 		((myPanel * )panel[i])->stop();
 	}
 }
+
+void ofApp::playSamplesInOrder(){
+	for(int i=0; i<PADCOUNT; i++){
+		for(int j=0; j<PADCOUNT; j++){
+			if(((myPanel * )panel[j])->getSlot()==i){
+				if(((myPanel * )panel[j])->getSelectedSampleIndex()!=-1){
+					((myPanel * )panel[j])->play(127);
+					while(((myPanel * )panel[j])->isPlaying()){
+						ofSleepMillis(5);
+					}
+					//ofSleepMillis(5);
+				}
+				break;
+			}
+		}
+	}
+}
+
 
 //--------------------------------------------------------------
 void ofApp::setMidiPort(string pPortName){
@@ -265,7 +285,6 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 				break;
 			}
 		}
-
 	}
 }
 
@@ -284,26 +303,26 @@ void ofApp::buildGui(){
     gui->setWidth( ofGetScreenWidth() );
 
 	int iTop = 180;
-	int iPadding = 15;
+	int iPadding = 1;
 	panel[0] = new myPanel(12, 12, iTop, WIDTH/4 -12);
 	panel[1] = new myPanel(13, 12+WIDTH/4, iTop, WIDTH/4 -12);
 	panel[2] = new myPanel(14, 12+2*WIDTH/4, iTop, WIDTH/4 -12);
 	panel[3] = new myPanel(15, 12+3*WIDTH/4, iTop, WIDTH/4 -24);
 	
-	panel[4] = new myPanel(8, 12, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
-	panel[5] = new myPanel(9, 12+WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
-	panel[6] = new myPanel(10, 12+2*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -12);
-	panel[7] = new myPanel(11, 12+3*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight()*.75 +iPadding, WIDTH/4 -24);
+	panel[4] = new myPanel(8, 12, panel[0]->getPosition().y + panel[0]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[5] = new myPanel(9, 12+WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[6] = new myPanel(10, 12+2*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[7] = new myPanel(11, 12+3*WIDTH/4, panel[0]->getPosition().y + panel[0]->getHeight() +iPadding, WIDTH/4 -24);
 
-	panel[8] = new myPanel(4, 12, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4-12);
-	panel[9] = new myPanel(5, 12+WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -12);
-	panel[10] = new myPanel(6, 12+2*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -12);
-	panel[11] = new myPanel(7, 12+3*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight()*.75 +iPadding, WIDTH/4 -24);
+	panel[8] = new myPanel(4, 12, panel[4]->getPosition().y + panel[4]->getHeight() +iPadding, WIDTH/4-12);
+	panel[9] = new myPanel(5, 12+WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[10] = new myPanel(6, 12+2*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[11] = new myPanel(7, 12+3*WIDTH/4, panel[4]->getPosition().y + panel[4]->getHeight() +iPadding, WIDTH/4 -24);
 
-	panel[12] = new myPanel(0, 12, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12);
-	panel[13] = new myPanel(1, 12+WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12 );
-	panel[14] = new myPanel(2, 12+2*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-12 );
-	panel[15] = new myPanel(3, 12+3*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight()*.75 +iPadding, WIDTH/4-24);
+	panel[12] = new myPanel(0, 12, panel[8]->getPosition().y + panel[8]->getHeight() +iPadding, WIDTH/4-12);
+	panel[13] = new myPanel(1, 12+WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[14] = new myPanel(2, 12+2*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight() +iPadding, WIDTH/4 -12);
+	panel[15] = new myPanel(3, 12+3*WIDTH/4, panel[8]->getPosition().y + panel[8]->getHeight() +iPadding, WIDTH/4 -23);
 
 	for(int i=0; i<PADCOUNT; i++){
 		((myPanel * )panel[i])->onButtonEvent(this, &ofApp::onButtonEvent);	
@@ -311,8 +330,8 @@ void ofApp::buildGui(){
 
 	bottomGui = new ofxDatGui( ofxDatGuiAnchor::BOTTOM_LEFT );
 	btnRandomize = bottomGui->addButton(LBL_RANDOMIZE);
-	
-	bottomGui->addLabel("");
+	btnPlaySamplesInOrder = bottomGui->addButton(LBL_PLAYSAMPLESINORDER);
+	//bottomGui->addLabel("");
 	btnExportToFolder = bottomGui->addButton(LBL_EXPORTTOFOLDER);
 //	btnExportAsSingleWav = bottomGui->addButton(LBL_EXPORTASSINGLEWAV);
 	bottomGui->addBreak()->setHeight(10.0f);
@@ -320,7 +339,7 @@ void ofApp::buildGui(){
     bottomGui->setTheme(new myCustomTheme() );
     bottomGui->setWidth( ofGetScreenWidth() );
 
-	btnRandomize->setTheme(new pinkTheme());
+	//btnRandomize->setTheme(new pinkTheme());
 }
 
 //--------------------------------------------------------------
