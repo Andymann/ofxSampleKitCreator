@@ -1,4 +1,4 @@
-<midiInPort>virtual1</midiInPort>
+<midiInPort>IAC-Treiber Bus 1</midiInPort>
 <Pad_0_Directory></Pad_0_Directory>
 <Pad_0_Sample>0</Pad_0_Sample>
 <Pad_1_Directory></Pad_1_Directory>
@@ -7,32 +7,32 @@
 <Pad_2_Sample>0</Pad_2_Sample>
 <Pad_3_Directory></Pad_3_Directory>
 <Pad_3_Sample>0</Pad_3_Sample>
-<Pad_4_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/percussion</Pad_4_Directory>
-<Pad_4_Sample>1</Pad_4_Sample>
-<Pad_5_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/percussion</Pad_5_Directory>
-<Pad_5_Sample>6</Pad_5_Sample>
-<Pad_6_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/percussion</Pad_6_Directory>
-<Pad_6_Sample>3</Pad_6_Sample>
-<Pad_7_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/shaker_tambourine</Pad_7_Directory>
-<Pad_7_Sample>5</Pad_7_Sample>
-<Pad_8_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/toms</Pad_8_Directory>
-<Pad_8_Sample>6</Pad_8_Sample>
-<Pad_9_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/toms</Pad_9_Directory>
-<Pad_9_Sample>9</Pad_9_Sample>
-<Pad_10_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/clap</Pad_10_Directory>
-<Pad_10_Sample>3</Pad_10_Sample>
-<Pad_11_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/ride_cymbal</Pad_11_Directory>
-<Pad_11_Sample>1</Pad_11_Sample>
-<Pad_12_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/bd_kick</Pad_12_Directory>
-<Pad_12_Sample>4</Pad_12_Sample>
-<Pad_13_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/snare</Pad_13_Directory>
-<Pad_13_Sample>1</Pad_13_Sample>
-<Pad_14_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/hats</Pad_14_Directory>
-<Pad_14_Sample>10</Pad_14_Sample>
-<Pad_15_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/hats</Pad_15_Directory>
-<Pad_15_Sample>26</Pad_15_Sample>
+<Pad_4_Directory></Pad_4_Directory>
+<Pad_4_Sample>0</Pad_4_Sample>
+<Pad_5_Directory></Pad_5_Directory>
+<Pad_5_Sample>0</Pad_5_Sample>
+<Pad_6_Directory></Pad_6_Directory>
+<Pad_6_Sample>0</Pad_6_Sample>
+<Pad_7_Directory></Pad_7_Directory>
+<Pad_7_Sample>0</Pad_7_Sample>
+<Pad_8_Directory></Pad_8_Directory>
+<Pad_8_Sample>0</Pad_8_Sample>
+<Pad_9_Directory></Pad_9_Directory>
+<Pad_9_Sample>0</Pad_9_Sample>
+<Pad_10_Directory></Pad_10_Directory>
+<Pad_10_Sample>0</Pad_10_Sample>
+<Pad_11_Directory></Pad_11_Directory>
+<Pad_11_Sample>0</Pad_11_Sample>
+<Pad_12_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Kick</Pad_12_Directory>
+<Pad_12_Sample>1</Pad_12_Sample>
+<Pad_13_Directory></Pad_13_Directory>
+<Pad_13_Sample>0</Pad_13_Sample>
+<Pad_14_Directory></Pad_14_Directory>
+<Pad_14_Sample>0</Pad_14_Sample>
+<Pad_15_Directory></Pad_15_Directory>
+<Pad_15_Sample>0</Pad_15_Sample>
 <velocityhandling>1</velocityhandling>
-<controlpreset>SP404 MK2 - Bank A</controlpreset>
+<controlpreset>Launchkey Mini MK3 - Keys</controlpreset>
 <Pad_0_Lock>0</Pad_0_Lock>
 <Pad_1_Lock>0</Pad_1_Lock>
 <Pad_2_Lock>0</Pad_2_Lock>

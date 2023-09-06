@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.16";
+	const string VERSION="0.17";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -323,10 +323,7 @@ class myPanel : public ofxDatGui{
 				}else{
 					iSelectedFile=0;
 				}
-				//cout << ofToString(vFiles[iSelectedFile]) << endl;
-				//cout << fs::path( vFiles[iSelectedFile] ).filename() << endl;
-				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
-				mySample.load( vFiles[iSelectedFile] );
+				setSelectedSampleIndex(iSelectedFile);
 			}
 		}
 
@@ -341,8 +338,7 @@ class myPanel : public ofxDatGui{
 				}else{
 					iSelectedFile=vFiles.size()-1;
 				}
-				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
-				mySample.load( vFiles[iSelectedFile] );
+				setSelectedSampleIndex(iSelectedFile);
 			}
 		}
 
@@ -353,10 +349,8 @@ class myPanel : public ofxDatGui{
 			}
 			if(vFiles.size()>0){
 				int randomNumber = (int) ofRandom(0,vFiles.size());
-				cout << "RND " << ofToString(randomNumber) <<endl;
-				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
-				mySample.load( vFiles[randomNumber] );
 				iSelectedFile = randomNumber;
+				setSelectedSampleIndex(iSelectedFile);
 			}
 		}
 
@@ -389,8 +383,11 @@ class myPanel : public ofxDatGui{
 		void setSelectedSampleIndex(int pIndex){	
 			if((vFiles.size()>0) && (pIndex>=0) && (pIndex<vFiles.size())){
 				iSelectedFile=pIndex;
-				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
 				mySample.load( vFiles[iSelectedFile] );
+
+				string tmp = "(" + ofToString(iSelectedFile+1) + ") ";
+				tmp += fs::path( vFiles[iSelectedFile] ).filename();
+				lblFilename->setLabel( tmp );
 			}
 		}
 
