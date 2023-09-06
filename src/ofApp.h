@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int WIDTH = 1400;
 	const int HEIGHT = 1600;
 	const string TITLE="ofxSampleKitCreator";
-	const string VERSION="0.17";
+	const string VERSION="0.18";
 	const string WEBSITE = "                                  www.Andyland.info";
 
 	bool bShowGui = true;
@@ -285,8 +285,7 @@ class myPanel : public ofxDatGui{
 			// Select the first file in the folder;
 			if(vFiles.size()>0){
 				iSelectedFile = 0;
-				lblFilename->setLabel( fs::path( vFiles[iSelectedFile] ).filename() );
-				mySample.load( vFiles[iSelectedFile] );
+				setSelectedSampleIndex(iSelectedFile);
 			}
 
 			// When intentionally selecting a new Directory the slot will be unlocked
