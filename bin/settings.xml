@@ -1,51 +1,51 @@
-<midiInPort>Launchkey Mini MK3 MIDI Port</midiInPort>
+<midiInPort>IAC-Treiber Bus 1</midiInPort>
 <Pad_0_Directory></Pad_0_Directory>
 <Pad_0_Sample>0</Pad_0_Sample>
+<Pad_0_Lock>0</Pad_0_Lock>
 <Pad_1_Directory></Pad_1_Directory>
 <Pad_1_Sample>0</Pad_1_Sample>
+<Pad_1_Lock>0</Pad_1_Lock>
 <Pad_2_Directory></Pad_2_Directory>
 <Pad_2_Sample>0</Pad_2_Sample>
+<Pad_2_Lock>0</Pad_2_Lock>
 <Pad_3_Directory></Pad_3_Directory>
 <Pad_3_Sample>0</Pad_3_Sample>
+<Pad_3_Lock>0</Pad_3_Lock>
 <Pad_4_Directory></Pad_4_Directory>
 <Pad_4_Sample>0</Pad_4_Sample>
+<Pad_4_Lock>0</Pad_4_Lock>
 <Pad_5_Directory></Pad_5_Directory>
 <Pad_5_Sample>0</Pad_5_Sample>
+<Pad_5_Lock>0</Pad_5_Lock>
 <Pad_6_Directory></Pad_6_Directory>
 <Pad_6_Sample>0</Pad_6_Sample>
+<Pad_6_Lock>0</Pad_6_Lock>
 <Pad_7_Directory></Pad_7_Directory>
 <Pad_7_Sample>0</Pad_7_Sample>
-<Pad_8_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Various</Pad_8_Directory>
-<Pad_8_Sample>3</Pad_8_Sample>
-<Pad_9_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Various</Pad_9_Directory>
-<Pad_9_Sample>1</Pad_9_Sample>
-<Pad_10_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Ride</Pad_10_Directory>
-<Pad_10_Sample>1</Pad_10_Sample>
-<Pad_11_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Crash</Pad_11_Directory>
-<Pad_11_Sample>1</Pad_11_Sample>
+<Pad_7_Lock>0</Pad_7_Lock>
+<Pad_8_Directory></Pad_8_Directory>
+<Pad_8_Sample>0</Pad_8_Sample>
+<Pad_8_Lock>0</Pad_8_Lock>
+<Pad_9_Directory></Pad_9_Directory>
+<Pad_9_Sample>0</Pad_9_Sample>
+<Pad_9_Lock>0</Pad_9_Lock>
+<Pad_10_Directory></Pad_10_Directory>
+<Pad_10_Sample>0</Pad_10_Sample>
+<Pad_10_Lock>0</Pad_10_Lock>
+<Pad_11_Directory></Pad_11_Directory>
+<Pad_11_Sample>0</Pad_11_Sample>
+<Pad_11_Lock>0</Pad_11_Lock>
 <Pad_12_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Kick</Pad_12_Directory>
 <Pad_12_Sample>1</Pad_12_Sample>
-<Pad_13_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Snare</Pad_13_Directory>
-<Pad_13_Sample>1</Pad_13_Sample>
-<Pad_14_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/ClosedHiHat</Pad_14_Directory>
-<Pad_14_Sample>1</Pad_14_Sample>
-<Pad_15_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/OpenHiHat</Pad_15_Directory>
-<Pad_15_Sample>1</Pad_15_Sample>
+<Pad_12_Lock>0</Pad_12_Lock>
+<Pad_13_Directory></Pad_13_Directory>
+<Pad_13_Sample>0</Pad_13_Sample>
+<Pad_13_Lock>0</Pad_13_Lock>
+<Pad_14_Directory></Pad_14_Directory>
+<Pad_14_Sample>0</Pad_14_Sample>
+<Pad_14_Lock>0</Pad_14_Lock>
+<Pad_15_Directory></Pad_15_Directory>
+<Pad_15_Sample>0</Pad_15_Sample>
+<Pad_15_Lock>0</Pad_15_Lock>
 <velocityhandling>1</velocityhandling>
 <controlpreset>Launchkey Mini MK3 - Keys</controlpreset>
-<Pad_0_Lock>0</Pad_0_Lock>
-<Pad_1_Lock>0</Pad_1_Lock>
-<Pad_2_Lock>0</Pad_2_Lock>
-<Pad_3_Lock>0</Pad_3_Lock>
-<Pad_4_Lock>0</Pad_4_Lock>
-<Pad_5_Lock>0</Pad_5_Lock>
-<Pad_6_Lock>0</Pad_6_Lock>
-<Pad_7_Lock>0</Pad_7_Lock>
-<Pad_8_Lock>0</Pad_8_Lock>
-<Pad_9_Lock>0</Pad_9_Lock>
-<Pad_10_Lock>0</Pad_10_Lock>
-<Pad_11_Lock>0</Pad_11_Lock>
-<Pad_12_Lock>0</Pad_12_Lock>
-<Pad_13_Lock>0</Pad_13_Lock>
-<Pad_14_Lock>0</Pad_14_Lock>
-<Pad_15_Lock>0</Pad_15_Lock>

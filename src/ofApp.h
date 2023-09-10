@@ -42,12 +42,14 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const string LBL_CMD_MIDI_IN = "Midi In: ";
 	const string LBLCMBMIDI = "Click here to select MidiPort";
 	const string LBLCMBPRESET = "Select Control-Preset";
-	const string LBLCMBVELOCITY = "Select how to treat incomfing midi";
+	const string LBLCMBVELOCITY = "Select how to treat incoming midi";
 	const string LBL_RANDOMIZE = "Randomize samples...";
 	const string LBL_PLAYSAMPLESINORDER = "Play samples in order";
 	const string LBL_EXPORTTOFOLDER = "Export Samples to Folder";
 	const string LBL_EXPORTASSINGLEWAV = "Export as single WAV File";
-	const string LBL_VELOCITYFIXED = "Play samples with fixed velocity";
+	const string LBL_VELOCITYFIXED_75 = "Play samples with fixed velocity (75)";
+	const string LBL_VELOCITYFIXED_100 = "Play samples with fixed velocity (100)";
+	const string LBL_VELOCITYFIXED_127 = "Play samples with fixed velocity (127)";
 	const string LBL_VELOCITYVARI = "Play samples with Controller's velocity";
 
 	// For them Pads
@@ -56,8 +58,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	const int PAD_CONTROL_NEXT = 2;
 	const int PAD_PLAYSAMPLE = 4;
 
-	vector<string> vVelo = {LBL_VELOCITYVARI, LBL_VELOCITYFIXED};
-	bool bIncomingVelocityFixed=false;
+	vector<string> vVelo = {LBL_VELOCITYVARI, LBL_VELOCITYFIXED_75, LBL_VELOCITYFIXED_100, LBL_VELOCITYFIXED_127};
+	int iIncomingVelocityFixed=-1;
 
 	vector<string>logText;
 	void addLog(string p);

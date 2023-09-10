@@ -121,11 +121,14 @@ void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
 		setActivePreset( e.target->getLabel() );
 	}else if(e.target->getName().compare(LBLCMBVELOCITY)==0){
 		if( e.target->getLabel().compare(LBL_VELOCITYVARI)==0 ){
-			bIncomingVelocityFixed = false;
+			iIncomingVelocityFixed = -1;
 			//cout << "bVelo " << ofToString(bIncomingVelocityFixed) << endl;
-		}else if(e.target->getLabel().compare(LBL_VELOCITYFIXED)==0) {
-			bIncomingVelocityFixed = true;
-			//cout << "bVelo " << ofToString(bIncomingVelocityFixed) << endl;
+		}else if(e.target->getLabel().compare(LBL_VELOCITYFIXED_75)==0) {
+			iIncomingVelocityFixed = 75;
+		}else if(e.target->getLabel().compare(LBL_VELOCITYFIXED_100)==0) {
+			iIncomingVelocityFixed = 100;
+		}else if(e.target->getLabel().compare(LBL_VELOCITYFIXED_127)==0) {
+			iIncomingVelocityFixed = 127;
 		}
 	}
     
@@ -265,8 +268,8 @@ void ofApp::processMidi_NoteOn(ofxMidiMessage& message){
 		if((message.channel == vecPadmapping[i].iChannel) &&
 		(message.pitch == vecPadmapping[i].iPlay) && (vecPadmapping[i].iAction == PAD_PLAYSAMPLE)){
 			if(message.velocity>0){
-				if(bIncomingVelocityFixed==true){
-					message.velocity = 0x7f;
+				if(iIncomingVelocityFixed!=-1){
+					message.velocity = iIncomingVelocityFixed;
 				}
 				playSample(vecPadmapping[i].iPad, message.velocity);
 				iActivePad = i;
@@ -427,8 +430,12 @@ void ofApp::restoreSettings(){
 
 	int iTmp = xmlSettings.getValue("velocityhandling", 0);
 	cmbVelocity->setLabel(vVelo[iTmp]);
-	if(vVelo[iTmp].compare(LBL_VELOCITYFIXED)==0){
-		bIncomingVelocityFixed = true;
+	if(vVelo[iTmp].compare(LBL_VELOCITYFIXED_75)==0){
+		iIncomingVelocityFixed = 75;
+	}else if(vVelo[iTmp].compare(LBL_VELOCITYFIXED_100)==0){
+		iIncomingVelocityFixed = 100;
+	}else if(vVelo[iTmp].compare(LBL_VELOCITYFIXED_127)==0){
+		iIncomingVelocityFixed = 127;
 	}
 }
 
