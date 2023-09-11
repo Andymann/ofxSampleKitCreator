@@ -56,6 +56,14 @@ void ofApp::keyPressed(int key){
 	if(key=='+'){
 		selectNextSample(iActivePad);
     }
+
+	if(key==OF_KEY_DOWN){
+		selectNextSample(iActivePad);
+    }
+
+	if(key==OF_KEY_UP){
+		selectNextSample(iActivePad);
+    }
 }
 
 //--------------------------------------------------------------

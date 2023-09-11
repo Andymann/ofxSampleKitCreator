@@ -1,4 +1,4 @@
-<midiInPort>IAC-Treiber Bus 1</midiInPort>
+<midiInPort>virtual1</midiInPort>
 <Pad_0_Directory></Pad_0_Directory>
 <Pad_0_Sample>0</Pad_0_Sample>
 <Pad_0_Lock>0</Pad_0_Lock>
@@ -35,8 +35,8 @@
 <Pad_11_Directory></Pad_11_Directory>
 <Pad_11_Sample>0</Pad_11_Sample>
 <Pad_11_Lock>0</Pad_11_Lock>
-<Pad_12_Directory>/Users/andyfischer/Documents/_temp/Roland TR-909/Kick</Pad_12_Directory>
-<Pad_12_Sample>1</Pad_12_Sample>
+<Pad_12_Directory>/Users/andyfischer/Documents/_temp/deep_house_drum_samples/Deep House Drum Samples/percussion</Pad_12_Directory>
+<Pad_12_Sample>9</Pad_12_Sample>
 <Pad_12_Lock>0</Pad_12_Lock>
 <Pad_13_Directory></Pad_13_Directory>
 <Pad_13_Sample>0</Pad_13_Sample>
