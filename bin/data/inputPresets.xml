@@ -1,4 +1,4 @@
-<preset name="Starrypad, Keys '-' and '+' for PREV and NEXT">
+<preset name="Starrypad, Arrow UP and DOWN for PREV and NEXT">
 	<control_previous>
 		<midiChannel>11</midiChannel>
 		<note>47</note>

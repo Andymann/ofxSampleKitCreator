@@ -48,7 +48,7 @@ void ofApp::keyPressed(int key){
         //gui->setVisible(bShowGui);
 		stopAllSamples();
     }
-
+/*
 	if(key=='-'){
 		selectPreviousSample(iActivePad);
     }
@@ -56,7 +56,7 @@ void ofApp::keyPressed(int key){
 	if(key=='+'){
 		selectNextSample(iActivePad);
     }
-
+*/
 	if(key==OF_KEY_DOWN){
 		selectNextSample(iActivePad);
     }
